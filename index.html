@@ -165,6 +165,13 @@ body {
     overflow: hidden;
 }
 
+/* Adjust welcome text to avoid floating buttons overlap */
+#welcome .welcome-text {
+    flex: 1;
+    will-change: transform, opacity;
+    margin-left: 80px; /* move text away from floating buttons */
+}
+
 .welcome-image, .welcome-text {
     flex: 1;
     will-change: transform, opacity;
@@ -315,9 +322,9 @@ footer {
         text-align: center;
     }
 
-    .welcome-image, .welcome-text {
-        transform: none !important;
-        opacity: 1 !important;
+    #welcome .welcome-text {
+        margin-left: 0;
+        text-align: center;
     }
 
     .floating-buttons {
