@@ -144,22 +144,23 @@ body {
     margin: auto;
 }
 
-/* WELCOME - side by side with president photo */
+/* WELCOME - flex side by side */
 #welcome {
-    display: grid;
-    grid-template-columns: 400px 1fr; /* Image fixed width, text fills remaining space */
-    gap: 60px;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 60px;
 }
 
 #welcome img {
-    width: 100%;
-    max-width: 400px;
+    flex: 0 0 400px;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 }
 
 #welcome .welcome-text {
+    flex: 1;
     text-align: left;
 }
 
@@ -291,7 +292,7 @@ footer {
 /* RESPONSIVE */
 @media(max-width: 900px) {
     #welcome {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
     }
 
@@ -383,25 +384,23 @@ footer {
 
 <!-- WELCOME MESSAGE -->
 <section id="welcome" class="section animate">
-    <div class="welcome">
-        <img src="images/president.jpg" alt="President AHP Terengganu">
-        <div class="welcome-text">
-            <h2>Welcome Message</h2>
-            <h3>President, Allied Health Practitioners Negeri Terengganu</h3>
-            <p>
-                On behalf of the Allied Health Practitioners Negeri Terengganu,
-                it is my great pleasure to welcome you to the 2nd Terengganu
-                Allied Health Professional Scientific Conference.
-            </p>
-            <p>
-                This conference provides an important platform for allied health
-                professionals to present research, share clinical experiences,
-                and explore innovations that contribute to better health outcomes.
-            </p>
-            <p>
-                We look forward to your participation and meaningful engagement.
-            </p>
-        </div>
+    <img src="images/president.jpg" alt="President AHP Terengganu">
+    <div class="welcome-text">
+        <h2>Welcome Message</h2>
+        <h3>President, Allied Health Practitioners Negeri Terengganu</h3>
+        <p>
+            On behalf of the Allied Health Practitioners Negeri Terengganu,
+            it is my great pleasure to welcome you to the 2nd Terengganu
+            Allied Health Professional Scientific Conference.
+        </p>
+        <p>
+            This conference provides an important platform for allied health
+            professionals to present research, share clinical experiences,
+            and explore innovations that contribute to better health outcomes.
+        </p>
+        <p>
+            We look forward to your participation and meaningful engagement.
+        </p>
     </div>
 </section>
 
