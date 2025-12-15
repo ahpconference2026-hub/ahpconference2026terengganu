@@ -58,22 +58,24 @@ body {
 .floating-buttons a {
     text-decoration: none;
     padding: 14px 18px;
-    background: #0a5c6d;
+    background: linear-gradient(135deg, #0a5c6d, #0f8a99);
     color: white;
     font-size: 14px;
     font-weight: 600;
     border-radius: 30px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .floating-buttons a:hover {
-    background: #094e5c;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
 }
 
-/* HERO - PARALLAX */
+/* Hero Section */
 .hero {
     min-height: 100vh;
     position: relative;
@@ -93,8 +95,8 @@ body {
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: url("images/hero-bg.jpg") center/cover no-repeat;
-    transform: translateZ(0);
     z-index: -1;
+    transform: translateY(0px);
     will-change: transform;
 }
 
@@ -157,7 +159,7 @@ body {
     position: relative;
 }
 
-/* WELCOME - flex side by side */
+/* WELCOME */
 #welcome {
     display: flex;
     flex-wrap: wrap;
@@ -194,13 +196,12 @@ body {
     color: #4b5563;
 }
 
-/* CONFERENCE DETAILS - CREATIVE */
+/* DETAILS */
 #details {
     background: #f8fafc;
     text-align: center;
 }
 
-/* Date and Venue */
 .conference-date {
     font-size: 60px;
     font-weight: 800;
@@ -214,7 +215,6 @@ body {
     margin-bottom: 50px;
 }
 
-/* Section Headers */
 .details-header {
     font-size: 28px;
     font-weight: 700;
@@ -241,11 +241,12 @@ body {
     font-size: 18px;
     color: #0a5c6d;
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .category-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
 /* REGISTRATION FEES */
@@ -298,6 +299,12 @@ body {
     border-radius: 50%;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     margin-bottom: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.speaker-box:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 .speaker-box h4 {
@@ -407,7 +414,7 @@ footer {
 <!-- HERO -->
 <section id="hero" class="hero">
     <div class="hero-content">
-        <div class="join-text">Let’s Join</div>
+        <div class="join-text" id="hero-text">Let’s Join</div>
         <div class="title-row">
             <img src="images/logo-left.png" alt="Logo Left">
             <div class="title-block">
@@ -415,7 +422,7 @@ footer {
                     2nd TERENGGANU ALLIED HEALTH PROFESSIONAL (AHP)<br>
                     SCIENTIFIC CONFERENCE
                 </h1>
-                <div class="slogan">
+                <div class="slogan" id="hero-slogan">
                     Empowering Allied Health Professional:<br> 
                     Leading Change for Better Health Outcomes
                 </div>
@@ -504,7 +511,7 @@ footer {
 </footer>
 
 <script>
-// SCROLL ANIMATION
+// STAGGERED SCROLL ANIMATION
 const elements = document.querySelectorAll('.animate');
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -513,17 +520,33 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 }, { threshold: 0.15 });
-elements.forEach(el => observer.observe(el));
 
-// PARALLAX EFFECT
-const parallaxSections = document.querySelectorAll('.hero, #details');
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    parallaxSections.forEach(section => {
-        const bg = section.querySelector('::before');
-        section.style.transform = `translateY(${scrollY * 0.2}px)`;
-    });
+elements.forEach((el, index) => {
+    el.style.transitionDelay = `${index * 0.2}s`;
+    observer.observe(el);
 });
+
+// PARALLAX HERO
+const hero = document.querySelector('.hero::before');
+window.addEventListener('scroll', () => {
+    document.querySelector('.hero::before');
+    const scrollY = window.scrollY;
+    document.querySelector('.hero::before').style.transform = `translateY(${scrollY * 0.2}px)`;
+});
+
+// HERO TEXT ANIMATION
+const slogans = [
+    "Empowering Allied Health Professional: Leading Change for Better Health Outcomes",
+    "Collaborate, Innovate, Inspire",
+    "Advancing Health Together"
+];
+let current = 0;
+const heroSlogan = document.getElementById('hero-slogan');
+
+setInterval(() => {
+    current = (current + 1) % slogans.length;
+    heroSlogan.innerText = slogans[current];
+}, 4000);
 </script>
 
 </body>
