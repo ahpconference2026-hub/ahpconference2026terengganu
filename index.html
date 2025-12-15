@@ -5,19 +5,53 @@
 <title>2nd Terengganu AHP Scientific Conference</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Google Font (Close to Hemato style) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background: #ffffff;
-    color: #222;
+    color: #1f2933;
+}
+
+/* FLOATING BUTTONS */
+.floating-buttons {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.floating-buttons a {
+    text-decoration: none;
+    padding: 14px 18px;
+    background: #0a5c6d;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.floating-buttons a:hover {
+    background: #094e5c;
+    transform: translateY(-2px);
 }
 
 /* HERO */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-                url("images/hero-bg.jpg") center/cover no-repeat;
+    background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("images/hero-bg.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,16 +60,9 @@ body {
     padding: 40px 20px;
 }
 
-.hero-inner {
+.hero-content {
     max-width: 1000px;
-    animation: fadeUp 1.8s ease;
-}
-
-.join {
-    font-size: 52px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
+    animation: fadeUp 1.6s ease;
 }
 
 @keyframes fadeUp {
@@ -43,11 +70,18 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+.join-text {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
 .title-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
@@ -55,16 +89,27 @@ body {
     width: 90px;
 }
 
-.title-row h1 {
+.title-block {
+    max-width: 650px;
+}
+
+.title-block h1 {
     font-size: 30px;
     font-weight: 600;
     line-height: 1.4;
-    max-width: 600px;
+    margin: 0;
 }
 
-/* SECTION */
+.slogan {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.95;
+}
+
+/* SECTIONS */
 .section {
-    padding: 90px 20px;
+    padding: 100px 20px;
     max-width: 1200px;
     margin: auto;
 }
@@ -72,15 +117,15 @@ body {
 /* WELCOME */
 .welcome {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 50px;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
     align-items: center;
 }
 
 .welcome img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 }
 
 .welcome h2 {
@@ -90,21 +135,75 @@ body {
 }
 
 .welcome h3 {
-    margin-bottom: 10px;
-    font-weight: 600;
+    margin-bottom: 12px;
+    font-weight: 500;
 }
 
 .welcome p {
     font-size: 17px;
-    line-height: 1.8;
-    color: #444;
+    line-height: 1.9;
+    color: #4b5563;
+}
+
+/* DETAILS */
+.details {
+    background: #f8fafc;
+}
+
+.details h2 {
+    text-align: center;
+    font-size: 34px;
+    color: #0a5c6d;
+    margin-bottom: 60px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.detail-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.detail-box h4 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #0a5c6d;
+}
+
+.detail-box p,
+.detail-box li {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.detail-box ul {
+    padding-left: 18px;
+}
+
+/* FOOTER */
+footer {
+    background: #083f4a;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
 }
 
 /* RESPONSIVE */
-@media(max-width: 900px) {
+@media (max-width: 900px) {
     .welcome {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+    .floating-buttons {
+        right: 10px;
     }
 }
 </style>
@@ -112,25 +211,32 @@ body {
 
 <body>
 
+<!-- FLOATING BUTTONS -->
+<div class="floating-buttons">
+    <a href="https://forms.google.com" target="_blank">Register</a>
+    <a href="https://forms.google.com" target="_blank">Submit Abstract</a>
+</div>
+
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-inner">
-        <div class="join">Let’s Join</div>
+    <div class="hero-content">
+        <div class="join-text">Let’s Join</div>
 
         <div class="title-row">
-    <img src="images/logo-left.png" alt="Logo Left">
-    <div>
-        <h1>
-            2nd TERENGGANU ALLIED HEALTH PROFESSIONAL (AHP)<br>
-            SCIENTIFIC CONFERENCE
-        </h1>
-        <p class="slogan">
-            Empowering Allied Health Professional: Leading Change for Better Health Outcomes
-        </p>
-    </div>
-    <img src="images/logo-right.png" alt="Logo Right">
-      </div>
+            <img src="images/logo-left.png" alt="Logo Left">
 
+            <div class="title-block">
+                <h1>
+                    2nd TERENGGANU ALLIED HEALTH PROFESSIONAL (AHP)<br>
+                    SCIENTIFIC CONFERENCE
+                </h1>
+                <div class="slogan">
+                    Empowering Allied Health Professional: Leading Change for Better Health Outcomes
+                </div>
+            </div>
+
+            <img src="images/logo-right.png" alt="Logo Right">
+        </div>
     </div>
 </section>
 
@@ -148,10 +254,9 @@ body {
                 Allied Health Professional Scientific Conference.
             </p>
             <p>
-                This conference serves as an important platform for allied
-                health professionals to share research, clinical experiences,
-                and innovative practices towards strengthening healthcare
-                delivery.
+                This conference provides an important platform for allied health
+                professionals to present research, share clinical experiences,
+                and explore innovations that contribute to better health outcomes.
             </p>
             <p>
                 We look forward to your participation and meaningful engagement.
@@ -159,6 +264,56 @@ body {
         </div>
     </div>
 </section>
+
+<!-- CONFERENCE DETAILS -->
+<section class="section details">
+    <h2>Conference Details</h2>
+
+    <div class="details-grid">
+
+        <div class="detail-box">
+            <h4>Date</h4>
+            <p>To be confirmed</p>
+        </div>
+
+        <div class="detail-box">
+            <h4>Venue</h4>
+            <p>Terengganu, Malaysia</p>
+        </div>
+
+        <div class="detail-box">
+            <h4>Category</h4>
+            <ul>
+                <li>Oral Research</li>
+                <li>Oral Case Study</li>
+                <li>Poster</li>
+            </ul>
+        </div>
+
+        <div class="detail-box">
+            <h4>Registration Fees</h4>
+            <p>
+                Member: RM XXX<br>
+                Non-member: RM XXX<br>
+                Student: RM XXX
+            </p>
+        </div>
+
+        <div class="detail-box">
+            <h4>Important Dates</h4>
+            <p>
+                Abstract Submission: DD/MM/YYYY<br>
+                Acceptance Notification: DD/MM/YYYY<br>
+                Conference Date: DD/MM/YYYY
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Terengganu Allied Health Practitioners Conference
+</footer>
 
 </body>
 </html>
