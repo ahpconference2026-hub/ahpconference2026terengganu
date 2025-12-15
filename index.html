@@ -168,8 +168,9 @@ body {
 /* Adjust welcome text to avoid floating buttons overlap */
 #welcome .welcome-text {
     flex: 1;
+    max-width: calc(100% - 160px); /* leave space for floating buttons */
+    padding-right: 80px; /* space so text does not go under floating buttons */
     will-change: transform, opacity;
-    margin-left: 80px; /* move text away from floating buttons */
 }
 
 .welcome-image, .welcome-text {
