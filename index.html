@@ -71,10 +71,10 @@ body {
 }
 
 .join-text {
-    font-size: 52px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
 }
 
 .title-row {
@@ -94,17 +94,20 @@ body {
 }
 
 .title-block h1 {
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 1.4;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.3;
     margin: 0;
 }
 
 .slogan {
-    margin-top: 18px;
-    font-size: 18px;
-    font-weight: 300;
+    margin-top: 22px;
+    font-size: 22px;
+    font-weight: 400;
     opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* SECTIONS */
@@ -198,12 +201,28 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
+    /* Make welcome section stack vertically on small screens */
     .welcome {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
+    /* Adjust floating buttons position */
     .floating-buttons {
         right: 10px;
+    }
+
+    /* MOBILE FONT ADJUSTMENTS */
+    .join-text {
+        font-size: 48px;       /* smaller for mobile */
+    }
+
+    .title-block h1 {
+        font-size: 28px;       /* smaller for mobile */
+    }
+
+    .slogan {
+        font-size: 18px;       /* smaller for mobile */
     }
 }
 </style>
