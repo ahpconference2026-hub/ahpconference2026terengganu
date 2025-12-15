@@ -159,23 +159,14 @@ body {
 #welcome {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
+    align-items: flex-start; /* align text to top of image */
+    justify-content: flex-start; /* start from left */
+    gap: 40px;
     overflow: hidden;
 }
 
-/* Adjust welcome text to avoid floating buttons overlap */
-#welcome .welcome-text {
-    flex: 1;
-    max-width: calc(100% - 160px); /* leave space for floating buttons */
-    padding-right: 80px; /* space so text does not go under floating buttons */
-    will-change: transform, opacity;
-}
-
-.welcome-image, .welcome-text {
-    flex: 1;
-    will-change: transform, opacity;
+.welcome-image {
+    flex: 0 0 auto; /* keep image natural size */
 }
 
 .welcome-image img {
@@ -183,6 +174,12 @@ body {
     max-width: 400px;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.welcome-text {
+    flex: 1 1 auto; /* fill remaining space next to image */
+    max-width: 600px; /* optional limit */
+    will-change: transform, opacity;
 }
 
 /* CONFERENCE DETAILS */
@@ -323,9 +320,10 @@ footer {
         text-align: center;
     }
 
-    #welcome .welcome-text {
-        margin-left: 0;
-        text-align: center;
+    .welcome-text {
+        max-width: 100%;
+        padding: 0;
+        margin: 0 auto;
     }
 
     .floating-buttons {
