@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Library for Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* GLOBAL */
         :root {
@@ -297,7 +299,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         
-        /* HERO - SUMMIT STYLE - UPDATED TO USE LOCAL BACKGROUND */
+        /* HERO - WITH PARALLAX AND ANIMATED GRADIENT */
         .hero {
             min-height: 100vh;
             position: relative;
@@ -308,42 +310,72 @@
             color: white;
             padding: 40px 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(17, 32, 69, 0.92), rgba(26, 125, 140, 0.88)), 
-                        url('images/background.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(
+                135deg,
+                rgba(17, 32, 69, 0.92),
+                rgba(26, 125, 140, 0.88),
+                rgba(17, 32, 69, 0.92)
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             background-attachment: fixed;
         }
         
+        /* Animated Gradient Background */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Parallax Effect with Overlay Pattern */
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 200%;
             background: 
                 radial-gradient(circle at 20% 80%, rgba(248, 201, 28, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
             z-index: 1;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        /* Floating Animation for Parallax Elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-20px) translateX(10px); }
+            66% { transform: translateY(10px) translateX(-15px); }
+        }
+        
+        /* Floating Particles Background */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); }
         }
         
         .hero-content {
             max-width: 1000px;
-            animation: fadeUp 1.6s ease;
             z-index: 2;
             position: relative;
-        }
-        
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .hero-title {
@@ -373,6 +405,12 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         
         .hero-subtitle {
@@ -426,24 +464,26 @@
             background: var(--accent-color);
             color: var(--dark-blue);
             box-shadow: 0 8px 25px rgba(248, 201, 28, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .btn-primary:hover {
             background: #ffde59;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(248, 201, 28, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(248, 201, 28, 0.4);
         }
         
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .btn-secondary:hover {
             background: white;
             color: var(--primary-color);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
         }
         
         /* SECTIONS */
@@ -506,17 +546,16 @@
             max-width: 400px;
             border-radius: 10px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .welcome-image:hover img {
-            transform: translate(-10px, -10px);
+            transform: translate(-10px, -10px) scale(1.03);
         }
         
         .welcome-text {
             flex: 1 1 auto;
             max-width: 650px;
-            will-change: transform, opacity;
         }
         
         .welcome-text h2 {
@@ -585,15 +624,15 @@
             font-weight: 700;
             font-size: 20px;
             color: var(--primary-color);
-            transition: all 0.3s;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .category-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
             background: var(--primary-color);
             color: white;
             border-color: var(--accent-color);
@@ -619,11 +658,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .fee-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
         .fee-item:last-child {
@@ -700,6 +740,12 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border-left: 5px solid var(--accent-color);
             position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
         
         .timeline-content p {
@@ -760,14 +806,14 @@
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .speaker-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
         }
         
         .speaker-box::before {
@@ -788,6 +834,11 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             margin-bottom: 20px;
             border: 5px solid white;
+            transition: all 0.4s ease;
+        }
+        
+        .speaker-box:hover img {
+            transform: scale(1.05);
         }
         
         .speaker-box h4 {
@@ -809,7 +860,7 @@
             font-style: italic;
         }
         
-        /* PROGRAMS SECTION STYLES - NEW */
+        /* PROGRAMS SECTION STYLES */
         .programs-section {
             max-width: 900px;
             margin: 0 auto 60px auto;
@@ -824,13 +875,13 @@
             display: flex;
             align-items: flex-start;
             gap: 25px;
-            transition: all 0.3s;
             border-left: 5px solid var(--accent-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .program-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
         }
         
         .program-icon {
@@ -843,6 +894,11 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .program-card:hover .program-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .program-icon i {
@@ -877,7 +933,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
             font-size: 16px;
@@ -885,8 +941,8 @@
         
         .program-download-btn:hover {
             background: #ffde59;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(248, 201, 28, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(248, 201, 28, 0.3);
         }
         
         .program-download-btn.secondary {
@@ -896,7 +952,7 @@
         
         .program-download-btn.secondary:hover {
             background: var(--secondary-color);
-            box-shadow: 0 8px 20px rgba(26, 125, 140, 0.3);
+            box-shadow: 0 15px 35px rgba(26, 125, 140, 0.3);
         }
         
         .program-download-btn i {
@@ -939,19 +995,24 @@
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: all 0.3s;
             border-top: 5px solid var(--accent-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .objective-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
         }
         
         .objective-card i {
             font-size: 48px;
             color: var(--primary-color);
             margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+        
+        .objective-card:hover i {
+            transform: scale(1.2) rotate(10deg);
         }
         
         .objective-card h3 {
@@ -983,17 +1044,19 @@
             flex: 1;
             min-width: 300px;
             position: relative;
+            overflow: hidden;
+            border-radius: 12px;
         }
         
         .venue-image img {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: transform 0.7s ease;
         }
         
         .venue-image:hover img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
         
         .venue-details {
@@ -1034,7 +1097,7 @@
             text-decoration: none;
             font-weight: 700;
             margin-top: 20px;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 8px 25px rgba(17, 32, 69, 0.2);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -1044,8 +1107,8 @@
         .map-link:hover {
             background: var(--accent-color);
             color: var(--dark-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(17, 32, 69, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(17, 32, 69, 0.3);
         }
         
         .map-link i {
@@ -1077,22 +1140,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s;
             border-top: 5px solid var(--accent-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .organizer-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
         }
         
         .organizer-card img {
-            max-height: 300px;
-            max-width: 700px;
+            max-height: 300px !important;
+            max-width: 700px !important;
             margin-bottom: 25px;
             object-fit: contain;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
         }
-
+        
         .organizer-card:hover img {
             transform: scale(1.05);
         }
@@ -1136,12 +1200,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .whatsapp-contact:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .contact-info-whatsapp {
@@ -1173,30 +1237,18 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 16px;
         }
         
         .whatsapp-btn:hover {
             background: #1da851;
             transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
         }
         
         .whatsapp-btn i {
             font-size: 22px;
-        }
-        
-        /* Scroll animations */
-        .animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .animate.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         /* FOOTER */
@@ -1390,6 +1442,11 @@
             .calendar-link {
                 margin-left: 0;
             }
+            
+            /* Adjust particle count on mobile */
+            .particle {
+                display: none;
+            }
         }
         
         @media(max-width: 768px) {
@@ -1406,6 +1463,14 @@
             .countdown-item {
                 min-width: calc(50% - 20px);
             }
+            
+            .floating-buttons {
+                bottom: 20px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+            }
         }
         
         @media(max-width: 600px) {
@@ -1419,16 +1484,6 @@
             
             .conference-date {
                 font-size: 36px;
-            }
-            
-            .floating-buttons {
-                position: fixed;
-                bottom: 20px;
-                top: auto;
-                right: 50%;
-                transform: translateX(50%);
-                flex-direction: row;
-                gap: 10px;
             }
             
             .floating-buttons a {
@@ -1568,21 +1623,26 @@
         </a>
     </div>
     
-    <!-- HERO -->
+    <!-- HERO SECTION WITH PARALLAX AND PARTICLES -->
     <section id="hero" class="hero">
+        <!-- Floating Particles Background -->
+        <div class="particles-container" id="particles-container"></div>
+        
         <div class="hero-content">
-            <h1 class="hero-title">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1200">
                 2nd <span>TERENGGANU</span><br>
                 ALLIED HEALTH PROFESSIONAL
             </h1>
-            <div class="conference-tag">SCIENTIFIC CONFERENCE</div>
-            <div class="hero-subtitle">
+            <div class="conference-tag" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                SCIENTIFIC CONFERENCE
+            </div>
+            <div class="hero-subtitle" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                 Empowering Allied Health Professional: Leading Change for Better Health Outcomes
             </div>
-            <div class="hero-date">
+            <div class="hero-date" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                 <i class="fas fa-calendar-alt"></i> September 22-23, 2026
             </div>
-            <div class="hero-buttons">
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                 <a href="https://forms.google.com" target="_blank" class="hero-btn btn-primary">
                     <i class="fas fa-user-plus"></i> Register Now
                 </a>
@@ -1595,8 +1655,8 @@
     
     <!-- COUNTDOWN TIMER -->
     <div class="countdown-container">
-        <h2 class="countdown-title">Conference Countdown</h2>
-        <div class="countdown" id="countdown">
+        <h2 class="countdown-title" data-aos="fade-up">Conference Countdown</h2>
+        <div class="countdown" id="countdown" data-aos="fade-up" data-aos-delay="200">
             <div class="countdown-item">
                 <span class="countdown-number" id="days">00</span>
                 <span class="countdown-label">Days</span>
@@ -1614,14 +1674,15 @@
                 <span class="countdown-label">Seconds</span>
             </div>
         </div>
-        <div class="countdown-note">
+        <div class="countdown-note" data-aos="fade-up" data-aos-delay="400">
             Mark your calendar for the premier Allied Health event in Terengganu
         </div>
         <!-- CONFERENCE DATE WITH CALENDAR LINK -->
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=2nd%20Terengganu%20AHP%20Scientific%20Conference&dates=20260922T090000/20260923T170000&details=2nd%20Terengganu%20Allied%20Health%20Professional%20Scientific%20Conference%20at%20Ar-Riyadah%20Residence%2C%20Kuala%20Nerus%2C%20Terengganu.%20Theme%3A%20Empowering%20Allied%20Health%20Professional%3A%20Leading%20Change%20for%20Better%20Health%20Outcomes&location=Ar-Riyadah%20Residence%2C%20Kuala%20Nerus%2C%20Terengganu%2C%20Malaysia&sf=true&output=xml" 
            target="_blank" 
            class="conference-date-badge"
-           title="Click to add to your Google Calendar">
+           title="Click to add to your Google Calendar"
+           data-aos="fade-up" data-aos-delay="600">
             <span class="badge-text">
                 <i class="fas fa-calendar-check"></i> September 22-23, 2026
             </span>
@@ -1631,10 +1692,10 @@
     
     <!-- WELCOME -->
     <section id="welcome" class="section">
-        <div class="welcome-image animate">
+        <div class="welcome-image" data-aos="fade-right" data-aos-duration="1000">
             <img src="images/president.jpg" alt="President AHP Terengganu">
         </div>
-        <div class="welcome-text animate">
+        <div class="welcome-text" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
             <h2>Welcome Message</h2>
             <h3>Mr. Romel Shahfri Ahmad Tajuddin,<br>
                 President, Terengganu Allied Health Sciences Association</h3>
@@ -1655,19 +1716,19 @@
     
     <!-- OBJECTIVES -->
     <section id="objectives" class="section">
-        <h2 class="section-title">Conference Objectives</h2>
+        <h2 class="section-title" data-aos="fade-up">Conference Objectives</h2>
         <div class="objectives-container">
-            <div class="objective-card animate">
+            <div class="objective-card" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-users"></i>
                 <h3>Networking</h3>
                 <p>Provide a platform for allied health professionals to network, collaborate, and share knowledge across different disciplines and institutions.</p>
             </div>
-            <div class="objective-card animate">
+            <div class="objective-card" data-aos="fade-up" data-aos-delay="400">
                 <i class="fas fa-lightbulb"></i>
                 <h3>Innovation</h3>
                 <p>Showcase innovative research, clinical practices, and technological advancements in allied health fields to improve patient care and outcomes.</p>
             </div>
-            <div class="objective-card animate">
+            <div class="objective-card" data-aos="fade-up" data-aos-delay="600">
                 <i class="fas fa-graduation-cap"></i>
                 <h3>Professional Development</h3>
                 <p>Enhance professional competencies through evidence-based learning, workshops, and discussions led by experts in various allied health fields.</p>
@@ -1677,28 +1738,28 @@
     
     <!-- DETAILS -->
     <section id="details" class="section">
-        <h2 class="section-title">Conference Details</h2>
-        <div class="conference-date animate">22-23 September 2026</div>
-        <div class="conference-venue animate">
+        <h2 class="section-title" data-aos="fade-up">Conference Details</h2>
+        <div class="conference-date" data-aos="fade-up" data-aos-delay="200">22-23 September 2026</div>
+        <div class="conference-venue" data-aos="fade-up" data-aos-delay="300">
             Ar-Riyadah Residence, Kuala Nerus, Terengganu, Malaysia
         </div>
         
         <!-- INVITED SPEAKERS -->
-        <h3 class="details-header">Invited Speakers</h3>
+        <h3 class="details-header" data-aos="fade-up" data-aos-delay="400">Invited Speakers</h3>
         <div class="speakers-grid">
-            <div class="speaker-box animate">
+            <div class="speaker-box" data-aos="fade-up" data-aos-delay="200">
                 <img src="images/speaker1.jpg" alt="Speaker 1">
                 <h4>Prof. Dr. Syed Hatim Noor</h4>
                 <div class="speaker-title">Professor of Medical Statistics</div>
                 <p class="speaker-topic">Topic: Advanced Statistical Methods in Healthcare Research</p>
             </div>
-            <div class="speaker-box animate">
+            <div class="speaker-box" data-aos="fade-up" data-aos-delay="400">
                 <img src="images/speaker2.jpg" alt="Speaker 2">
                 <h4>Dr. Nik Armiza Binti Mat Rashid</h4>
                 <div class="speaker-title">Histopathology Technology Innovator</div>
                 <p class="speaker-topic">Topic: Digital Transformation in Allied Health</p>
             </div>
-            <div class="speaker-box animate">
+            <div class="speaker-box" data-aos="fade-up" data-aos-delay="600">
                 <img src="images/speaker3.jpg" alt="Speaker 3">
                 <h4>Dr. Sarah Johnson</h4>
                 <div class="speaker-title">Healthcare Policy Expert</div>
@@ -1706,17 +1767,17 @@
             </div>
         </div>
         
-        <!-- TENTATIVE PROGRAMS SECTION - NEW -->
-        <h3 class="details-header" style="margin-top: 70px;">Tentative Programs</h3>
-        <div class="programs-section animate">
-            <div class="program-card">
+        <!-- TENTATIVE PROGRAMS SECTION -->
+        <h3 class="details-header" style="margin-top: 70px;" data-aos="fade-up">Tentative Programs</h3>
+        <div class="programs-section">
+            <div class="program-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="program-icon">
                     <i class="fas fa-book-open"></i>
                 </div>
                 <div class="program-content">
                     <h4>Conference Program Schedule</h4>
                     <p>Download the complete tentative program schedule including session timings, presentation slots, and keynote speeches.</p>
-                    <a href="https://anyflip.com/rvpnb/bgyi/" 
+                    <a href="YOUR_URL_HERE" 
                        target="_blank" 
                        class="program-download-btn">
                         <i class="fas fa-download"></i> Download Program Booklet
@@ -1724,14 +1785,14 @@
                 </div>
             </div>
             
-            <div class="program-card">
+            <div class="program-card" data-aos="fade-up" data-aos-delay="400">
                 <div class="program-icon">
                     <i class="fas fa-calendar-day"></i>
                 </div>
                 <div class="program-content">
                     <h4>Day 1: September 22, 2026</h4>
                     <p>Opening ceremony, keynote speeches, parallel sessions, and networking events.</p>
-                    <a href="https://drive.google.com/file/d/1UUAAtTq-HynQ0BhD1eM-wCRVjzZuMK3g/view?usp=sharing" 
+                    <a href="YOUR_DAY1_URL_HERE" 
                        target="_blank" 
                        class="program-download-btn secondary">
                         <i class="fas fa-file-pdf"></i> Day 1 Schedule
@@ -1739,14 +1800,14 @@
                 </div>
             </div>
             
-            <div class="program-card">
+            <div class="program-card" data-aos="fade-up" data-aos-delay="600">
                 <div class="program-icon">
                     <i class="fas fa-calendar-day"></i>
                 </div>
                 <div class="program-content">
                     <h4>Day 2: September 23, 2026</h4>
                     <p>Research presentations, workshops, closing ceremony, and awards.</p>
-                    <a href="https://drive.google.com/file/d/1UUAAtTq-HynQ0BhD1eM-wCRVjzZuMK3g/view?usp=sharing" 
+                    <a href="YOUR_DAY2_URL_HERE" 
                        target="_blank" 
                        class="program-download-btn secondary">
                         <i class="fas fa-file-pdf"></i> Day 2 Schedule
@@ -1756,33 +1817,33 @@
         </div>
         
         <!-- CATEGORY - 3 CATEGORIES ONLY -->
-        <h3 class="details-header">Presentation Categories</h3>
+        <h3 class="details-header" data-aos="fade-up">Presentation Categories</h3>
         <div class="category-grid">
-            <div class="category-box animate">Oral Research</div>
-            <div class="category-box animate">Oral Case Study</div>
-            <div class="category-box animate">Poster Presentation</div>
+            <div class="category-box" data-aos="fade-up" data-aos-delay="200">Oral Research</div>
+            <div class="category-box" data-aos="fade-up" data-aos-delay="300">Oral Case Study</div>
+            <div class="category-box" data-aos="fade-up" data-aos-delay="400">Poster Presentation</div>
         </div>
         
         <!-- REGISTRATION FEES -->
-        <h3 class="details-header">Registration Fees</h3>
-        <div class="registration-fees animate">
-            <div class="fee-item">
+        <h3 class="details-header" data-aos="fade-up">Registration Fees</h3>
+        <div class="registration-fees">
+            <div class="fee-item" data-aos="fade-up" data-aos-delay="200">
                 <div>PASKBT Member</div>
                 <div><span>FREE</span></div>
             </div>
-            <div class="fee-item">
+            <div class="fee-item" data-aos="fade-up" data-aos-delay="300">
                 <div>Non-PASKBT (Terengganu)</div>
                 <div><span>RM 50</span></div>
             </div>
-            <div class="fee-item">
+            <div class="fee-item" data-aos="fade-up" data-aos-delay="400">
                 <div>Non-PASKBT (Outside Terengganu)</div>
                 <div><span>RM 150</span></div>
             </div>
         </div>
         
-        <!-- PASKBT MEMBERSHIP WHATSAPP BUTTON - NEW -->
-        <h3 class="details-header" style="margin-top: 70px;">Join PASKBT Membership</h3>
-        <div class="whatsapp-container animate" style="max-width: 600px;">
+        <!-- PASKBT MEMBERSHIP WHATSAPP BUTTON -->
+        <h3 class="details-header" style="margin-top: 70px;" data-aos="fade-up">Join PASKBT Membership</h3>
+        <div class="whatsapp-container" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="200">
             <div class="whatsapp-contact">
                 <div class="contact-info-whatsapp">
                     <h3>Become a PASKBT Member</h3>
@@ -1800,9 +1861,9 @@
         </div>
         
         <!-- IMPORTANT DATES TIMELINE -->
-        <h3 class="details-header">Important Dates</h3>
-        <div class="timeline animate">
-            <div class="timeline-item">
+        <h3 class="details-header" data-aos="fade-up">Important Dates</h3>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="timeline-date">
                     <span class="timeline-date-text">2 January 2026</span>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Abstract%20%26%20e-Poster%20Submission%20Opens%20-%20Terengganu%20AHP%20Conference&dates=20260102T000000/20260102T235959&details=Abstract%20%26%20e-Poster%20Submission%20opens%20for%20the%202nd%20Terengganu%20AHP%20Scientific%20Conference&location=Online&sf=true&output=xml" 
@@ -1817,7 +1878,7 @@
                     <p>Abstract & e-Poster Submission opens</p>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="timeline-date">
                     <span class="timeline-date-text">2 January 2026</span>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Registration%20Opens%20-%20Terengganu%20AHP%20Conference&dates=20260102T000000/20260102T235959&details=Registration%20opens%20for%20the%202nd%20Terengganu%20AHP%20Scientific%20Conference&location=Online&sf=true&output=xml" 
@@ -1832,7 +1893,7 @@
                     <p>Registration opens</p>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
                 <div class="timeline-date">
                     <span class="timeline-date-text">31 March 2026</span>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Abstract%20Submission%20Deadline%20-%20Terengganu%20AHP%20Conference&dates=20260331T235900/20260331T235959&details=Final%20deadline%20for%20abstract%20submission%20for%20the%202nd%20Terengganu%20AHP%20Scientific%20Conference&location=Online&sf=true&output=xml" 
@@ -1847,7 +1908,7 @@
                     <p>Abstract Submission deadline</p>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
                 <div class="timeline-date">
                     <span class="timeline-date-text">31 March 2026</span>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=e-Poster%20Submission%20Deadline%20-%20Terengganu%20AHP%20Conference&dates=20260331T235900/20260331T235959&details=Final%20deadline%20for%20e-Poster%20submission%20for%20the%202nd%20Terengganu%20AHP%20Scientific%20Conference&location=Online&sf=true&output=xml" 
@@ -1862,7 +1923,7 @@
                     <p>e-Poster Submission deadline</p>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
                 <div class="timeline-date">
                     <span class="timeline-date-text">22 June 2026</span>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Registration%20Deadline%20-%20Terengganu%20AHP%20Conference&dates=20260622T235900/20260622T235959&details=Final%20registration%20deadline%20for%20the%202nd%20Terengganu%20AHP%20Scientific%20Conference&location=Online&sf=true&output=xml" 
@@ -1882,12 +1943,12 @@
     
     <!-- VENUE -->
     <section id="venue" class="section">
-        <h2 class="section-title">Conference Venue</h2>
+        <h2 class="section-title" data-aos="fade-up">Conference Venue</h2>
         <div class="venue-container">
-            <div class="venue-image animate">
+            <div class="venue-image" data-aos="fade-right" data-aos-duration="1000">
                 <img src="images/venue.jpg" alt="Ar-Riyadah Residence">
             </div>
-            <div class="venue-details animate">
+            <div class="venue-details" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                 <h3>Ar-Riyadah Residence</h3>
                 <p><i class="fas fa-map-marker-alt"></i> Kuala Nerus, Terengganu, Malaysia</p>
                 <p><i class="fas fa-info-circle"></i> Ar-Riyadah Residence is a premier conference and accommodation facility located in the scenic area of Kuala Nerus, Terengganu. The venue offers state-of-the-art conference facilities, comfortable accommodations, and excellent dining options.</p>
@@ -1907,14 +1968,14 @@
     
     <!-- ORGANIZERS -->
     <section id="organizers" class="section">
-        <h2 class="section-title">Organizers</h2>
+        <h2 class="section-title" data-aos="fade-up">Organizers</h2>
         <div class="organizers-grid">
-            <div class="organizer-card animate">
+            <div class="organizer-card" data-aos="fade-up" data-aos-delay="200">
                 <img src="images/organizer2.png" alt="Ministry of Health Malaysia Logo">
                 <h3>Jabatan Kesihatan Negeri Terengganu</h3>
                 <p>Collaborating with the Ministry of Health to promote excellence in allied health practice and research.</p>
             </div>
-           <div class="organizer-card animate">
+           <div class="organizer-card" data-aos="fade-up" data-aos-delay="400">
                 <img src="images/organizer1.png" alt="Allied Health Practitioners Negeri Terengganu Logo">
                 <h3>Persatuan Anggota Sains Kesihatan Bersekutu Negeri Terengganu</h3>
                 <p>The main organizing body representing Allied Health Professionals in Terengganu, Malaysia.</p>
@@ -1924,11 +1985,11 @@
     
     <!-- CONTACT - WhatsApp Only -->
     <section id="contact" class="section">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="whatsapp-container animate">
-            <div class="whatsapp-title">Contact via WhatsApp</div>
+        <h2 class="section-title" data-aos="fade-up">Contact Us</h2>
+        <div class="whatsapp-container">
+            <div class="whatsapp-title" data-aos="fade-up" data-aos-delay="200">Contact via WhatsApp</div>
             <div class="whatsapp-contacts">
-                <div class="whatsapp-contact">
+                <div class="whatsapp-contact" data-aos="fade-up" data-aos-delay="300">
                     <div class="contact-info-whatsapp">
                         <h3>Registration & General Inquiries</h3>
                         <p>For registration questions and general conference information</p>
@@ -1936,10 +1997,10 @@
                     <a href="https://wa.me/60123456789?text=Hello%20AHP%20Conference%20Team,%20I%20have%20a%20question%20about%20the%20conference" 
                        target="_blank" 
                        class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> click me
+                        <i class="fab fa-whatsapp"></i> +60 12-345 6789
                     </a>
                 </div>
-                <div class="whatsapp-contact">
+                <div class="whatsapp-contact" data-aos="fade-up" data-aos-delay="500">
                     <div class="contact-info-whatsapp">
                         <h3>Abstract & Technical Support</h3>
                         <p>For abstract submission and technical questions</p>
@@ -1947,7 +2008,7 @@
                     <a href="https://wa.link/98umws" 
                        target="_blank" 
                        class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> click me
+                        <i class="fab fa-whatsapp"></i> +60 12-987 6543
                     </a>
                 </div>
             </div>
@@ -1959,11 +2020,11 @@
     
     <footer>
         <div class="footer-content">
-            <div class="footer-column">
+            <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
                 <h3>About the Conference</h3>
                 <p>The 2nd Terengganu Allied Health Professional Scientific Conference is a premier event for allied health professionals to share knowledge, network, and advance the field through research and innovation.</p>
             </div>
-            <div class="footer-column">
+            <div class="footer-column" data-aos="fade-up" data-aos-delay="400">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
@@ -1973,7 +2034,7 @@
                     <li><a href="#organizers"><i class="fas fa-chevron-right"></i> Organizers</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
+            <div class="footer-column" data-aos="fade-up" data-aos-delay="600">
                 <h3>Important Links</h3>
                 <ul>
                     <li><a href="https://forms.google.com" target="_blank"><i class="fas fa-external-link-alt"></i> Registration Form</a></li>
@@ -1987,7 +2048,18 @@
         </div>
     </footer>
     
+    <!-- AOS Library for Scroll Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+        
         // COUNTDOWN TIMER
         function updateCountdown() {
             const conferenceDate = new Date('September 22, 2026 09:00:00').getTime();
@@ -2027,18 +2099,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-        
-        // SCROLL ANIMATIONS
-        const elements = document.querySelectorAll('.animate');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15 });
-        
-        elements.forEach(el => observer.observe(el));
         
         // SMOOTH SCROLL FOR NAVIGATION
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2084,17 +2144,40 @@
             const navLinks = document.querySelectorAll('.nav-container a');
             navLinks[0].classList.add('active');
             
-            // Add hover effect for map link
-            const mapLink = document.querySelector('.map-link');
-            if(mapLink) {
-                mapLink.addEventListener('mouseenter', function() {
-                    this.innerHTML = '<i class="fas fa-map-marked-alt"></i> Open in Google Maps';
-                });
-                mapLink.addEventListener('mouseleave', function() {
-                    this.innerHTML = '<i class="fas fa-map-marked-alt"></i> View on Google Maps';
-                });
-            }
+            // Create floating particles for hero section
+            createParticles();
         });
+        
+        // Create floating particles animation
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                container.appendChild(particle);
+            }
+        }
         
         // Calendar link analytics (optional - can be used to track clicks)
         document.querySelectorAll('.calendar-link, .conference-date-badge').forEach(link => {
