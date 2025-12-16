@@ -309,7 +309,7 @@
             padding: 40px 20px;
             overflow: hidden;
             background: linear-gradient(135deg, rgba(17, 32, 69, 0.92), rgba(26, 125, 140, 0.88)), 
-                        url('images/backgroundahp.jpg');
+                        url('images/background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -807,6 +807,117 @@
         .speaker-topic {
             color: #666;
             font-style: italic;
+        }
+        
+        /* PROGRAMS SECTION STYLES - NEW */
+        .programs-section {
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            transition: all 0.3s;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .program-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .program-icon i {
+            font-size: 30px;
+        }
+        
+        .program-content {
+            flex: 1;
+        }
+        
+        .program-content h4 {
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .program-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .program-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-color);
+            color: var(--dark-blue);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .program-download-btn:hover {
+            background: #ffde59;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(248, 201, 28, 0.3);
+        }
+        
+        .program-download-btn.secondary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .program-download-btn.secondary:hover {
+            background: var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(26, 125, 140, 0.3);
+        }
+        
+        .program-download-btn i {
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .program-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            
+            .program-icon {
+                margin: 0 auto 20px auto;
+            }
+            
+            .program-download-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
         
         /* OBJECTIVES SECTION */
@@ -1590,6 +1701,55 @@
             </div>
         </div>
         
+        <!-- TENTATIVE PROGRAMS SECTION - NEW -->
+        <h3 class="details-header" style="margin-top: 70px;">Tentative Programs</h3>
+        <div class="programs-section animate">
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Conference Program Schedule</h4>
+                    <p>Download the complete tentative program schedule including session timings, presentation slots, and keynote speeches.</p>
+                    <a href="YOUR_URL_HERE" 
+                       target="_blank" 
+                       class="program-download-btn">
+                        <i class="fas fa-download"></i> Download Program Booklet
+                    </a>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-calendar-day"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Day 1: September 22, 2026</h4>
+                    <p>Opening ceremony, keynote speeches, parallel sessions, and networking events.</p>
+                    <a href="YOUR_DAY1_URL_HERE" 
+                       target="_blank" 
+                       class="program-download-btn secondary">
+                        <i class="fas fa-file-pdf"></i> Day 1 Schedule
+                    </a>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-calendar-day"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Day 2: September 23, 2026</h4>
+                    <p>Research presentations, workshops, closing ceremony, and awards.</p>
+                    <a href="YOUR_DAY2_URL_HERE" 
+                       target="_blank" 
+                       class="program-download-btn secondary">
+                        <i class="fas fa-file-pdf"></i> Day 2 Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+        
         <!-- CATEGORY - 3 CATEGORIES ONLY -->
         <h3 class="details-header">Presentation Categories</h3>
         <div class="category-grid">
@@ -1613,6 +1773,25 @@
                 <div>Non-PASKBT (Outside Terengganu)</div>
                 <div><span>RM 150</span></div>
             </div>
+        </div>
+        
+        <!-- PASKBT MEMBERSHIP WHATSAPP BUTTON - NEW -->
+        <h3 class="details-header" style="margin-top: 70px;">Join PASKBT Membership</h3>
+        <div class="whatsapp-container animate" style="max-width: 600px;">
+            <div class="whatsapp-contact">
+                <div class="contact-info-whatsapp">
+                    <h3>Become a PASKBT Member</h3>
+                    <p>Click below to inquire about PASKBT membership benefits and application process</p>
+                </div>
+                <a href="https://wa.me/60123456789?text=Hello%20PASKBT,%20I%20would%20like%20to%20inquire%20about%20membership%20registration" 
+                   target="_blank" 
+                   class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Join PASKBT
+                </a>
+            </div>
+            <p style="margin-top: 15px; color: #666; font-size: 14px; text-align: center;">
+                <i class="fas fa-info-circle"></i> PASKBT members enjoy FREE registration for this conference
+            </p>
         </div>
         
         <!-- IMPORTANT DATES TIMELINE -->
