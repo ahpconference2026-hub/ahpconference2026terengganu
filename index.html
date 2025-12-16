@@ -11,14 +11,16 @@
     <style>
         /* GLOBAL */
         :root {
-            --primary-color: #0a5c6d;
-            --secondary-color: #0f8a99;
-            --accent-color: #e0f2f1;
-            --text-color: #1f2933;
-            --light-bg: #f8fafc;
-            --dark-bg: #083f4a;
-            --timeline-color: #0a5c6d;
+            --primary-color: #112045;
+            --secondary-color: #1a7d8c;
+            --accent-color: #f8c91c;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #0a1520;
+            --timeline-color: #112045;
             --whatsapp-green: #25D366;
+            --red-accent: #e74c3c;
+            --dark-blue: #0d1b36;
         }
         
         body {
@@ -30,22 +32,30 @@
             overflow-x: hidden;
         }
         
-        /* NAVBAR */
+        /* NAVBAR - Summit Style */
         .navbar {
-            position: sticky;
+            position: fixed;
             top: 0;
-            background: rgba(10, 92, 109, 0.95);
+            width: 100%;
+            background: rgba(17, 32, 69, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             justify-content: center;
-            padding: 12px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(17, 32, 69, 1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
         }
         
         .nav-container {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -54,9 +64,12 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 16px;
+            transition: all 0.3s;
             position: relative;
             padding: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .nav-container a:hover {
@@ -69,13 +82,103 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background-color: var(--accent-color);
             transition: width 0.3s;
         }
         
         .nav-container a:hover::after {
             width: 100%;
+        }
+        
+        .nav-container a.active {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        .nav-container a.active::after {
+            width: 100%;
+        }
+        
+        /* COUNTDOWN TIMER - Summit Style */
+        .countdown-container {
+            background: linear-gradient(135deg, rgba(17, 32, 69, 0.9), rgba(26, 125, 140, 0.85));
+            padding: 70px 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        .countdown-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px 20px;
+            min-width: 140px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown-number {
+            font-size: 48px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            line-height: 1;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-label {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+        
+        .countdown-note {
+            margin-top: 30px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        .conference-date-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--dark-blue);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* FLOATING BUTTONS */
@@ -108,12 +211,13 @@
         }
         
         .floating-buttons a:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--accent-color), #ffde59);
+            color: var(--dark-blue);
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         
-        /* HERO - MODERN MEDICAL MINIMALIST */
+        /* HERO - SUMMIT STYLE */
         .hero {
             min-height: 100vh;
             position: relative;
@@ -124,9 +228,11 @@
             color: white;
             padding: 40px 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(10, 92, 109, 0.9), rgba(15, 138, 153, 0.8)), 
-                        radial-gradient(circle at 20% 80%, rgba(224, 242, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(17, 32, 69, 0.92), rgba(26, 125, 140, 0.88)), 
+                        url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         
         .hero::before {
@@ -136,18 +242,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(90deg, transparent 79px, rgba(255, 255, 255, 0.03) 79px, rgba(255, 255, 255, 0.03) 81px, transparent 81px),
-                linear-gradient(0deg, transparent 79px, rgba(255, 255, 255, 0.03) 79px, rgba(255, 255, 255, 0.03) 81px, transparent 81px);
-            background-size: 100px 100px;
-            z-index: -1;
-            opacity: 0.3;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(248, 201, 28, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
         }
         
         .hero-content {
             max-width: 1000px;
             animation: fadeUp 1.6s ease;
             z-index: 2;
+            position: relative;
         }
         
         @keyframes fadeUp {
@@ -161,61 +266,103 @@
             }
         }
         
-        .join-text {
-            font-size: 80px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-            background: linear-gradient(to right, #ffffff, var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .title-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .title-row img {
-            width: 90px;
-        }
-        
-        .title-block {
-            max-width: 650px;
-        }
-        
-        .title-block h1 {
-            font-size: 45px;
+        .conference-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--dark-blue);
+            padding: 12px 25px;
+            border-radius: 50px;
             font-weight: 700;
-            line-height: 1.3;
-            margin: 0;
+            font-size: 18px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .slogan {
-            margin-top: 22px;
-            font-size: 24px;
+        .hero-title {
+            font-size: 65px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-title span {
+            color: var(--accent-color);
+        }
+        
+        .hero-subtitle {
+            font-size: 28px;
             font-weight: 400;
-            opacity: 0.95;
+            margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.4;
+            opacity: 0.95;
         }
         
-        .date-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 12px 25px;
-            border-radius: 50px;
-            margin-top: 30px;
+        .hero-date {
+            font-size: 24px;
             font-weight: 600;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .hero-date i {
+            color: var(--accent-color);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .hero-btn {
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--dark-blue);
+            box-shadow: 0 8px 25px rgba(248, 201, 28, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #ffde59;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(248, 201, 28, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
         }
         
         /* SECTIONS */
@@ -227,21 +374,23 @@
         }
         
         .section-title {
-            font-size: 36px;
+            font-size: 42px;
             color: var(--primary-color);
             text-align: center;
             margin-bottom: 60px;
             position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
         }
         
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            margin: 15px auto 0;
-            border-radius: 2px;
+            width: 100px;
+            height: 5px;
+            background: var(--accent-color);
+            margin: 20px auto 0;
+            border-radius: 3px;
         }
         
         /* WELCOME */
@@ -250,37 +399,57 @@
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: flex-start;
-            gap: 40px;
+            gap: 50px;
             overflow: hidden;
         }
         
         .welcome-image {
             flex: 0 0 auto;
+            position: relative;
+        }
+        
+        .welcome-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 10px;
+            z-index: -1;
         }
         
         .welcome-image img {
             width: 100%;
             max-width: 400px;
             border-radius: 10px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        
+        .welcome-image:hover img {
+            transform: translate(-10px, -10px);
         }
         
         .welcome-text {
             flex: 1 1 auto;
-            max-width: 600px;
+            max-width: 650px;
             will-change: transform, opacity;
         }
         
         .welcome-text h2 {
             color: var(--primary-color);
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 10px;
+            font-weight: 800;
         }
         
         .welcome-text h3 {
             color: var(--secondary-color);
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 25px;
+            font-weight: 600;
         }
         
         .welcome-text p {
@@ -303,45 +472,50 @@
         }
         
         .conference-venue {
-            font-size: 20px;
-            color: #4b5563;
+            font-size: 24px;
+            color: var(--secondary-color);
             margin-bottom: 50px;
+            font-weight: 600;
         }
         
         .details-header {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             color: var(--primary-color);
-            margin: 40px 0 25px 0;
+            margin: 50px 0 35px 0;
+            text-transform: uppercase;
         }
         
         /* CATEGORY GRID */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
             max-width: 900px;
             margin: 0 auto 50px auto;
         }
         
         .category-box {
             background: #ffffff;
-            border: 2px solid var(--primary-color);
+            border: 3px solid var(--primary-color);
             border-radius: 12px;
-            padding: 30px 20px;
+            padding: 35px 20px;
             text-align: center;
-            font-weight: 600;
-            font-size: 18px;
+            font-weight: 700;
+            font-size: 20px;
             color: var(--primary-color);
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .category-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             background: var(--primary-color);
             color: white;
+            border-color: var(--accent-color);
         }
         
         /* REGISTRATION FEES */
@@ -357,13 +531,18 @@
         
         .fee-item {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .fee-item:hover {
+            transform: translateY(-5px);
         }
         
         .fee-item:last-child {
@@ -373,7 +552,7 @@
         .registration-fees span {
             color: var(--primary-color);
             font-weight: 800;
-            font-size: 22px;
+            font-size: 24px;
         }
         
         /* TIMELINE STYLE FOR IMPORTANT DATES */
@@ -389,9 +568,9 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 4px;
+            width: 5px;
             background: var(--timeline-color);
-            border-radius: 2px;
+            border-radius: 3px;
         }
         
         .timeline-item {
@@ -407,42 +586,43 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -8px;
+            left: -10px;
             top: 5px;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             background: white;
-            border: 4px solid var(--timeline-color);
+            border: 5px solid var(--timeline-color);
             border-radius: 50%;
             z-index: 2;
         }
         
         .timeline-date {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary-color);
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-size: 20px;
+            margin-bottom: 8px;
         }
         
         .timeline-content {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--accent-color);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--accent-color);
         }
         
         .timeline-content p {
             margin: 0;
             line-height: 1.6;
+            font-size: 18px;
         }
         
         /* INVITED SPEAKERS */
         .speakers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+            max-width: 1100px;
             margin: 0 auto 80px auto;
             text-align: center;
         }
@@ -450,35 +630,55 @@
         .speaker-box {
             background: white;
             border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         
         .speaker-box:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .speaker-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
         }
         
         .speaker-box img {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             border-radius: 50%;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: 5px solid white;
         }
         
         .speaker-box h4 {
-            font-size: 18px;
+            font-size: 22px;
             color: var(--primary-color);
-            margin: 0 0 5px 0;
+            margin: 0 0 8px 0;
+            font-weight: 700;
         }
         
         .speaker-title {
             color: var(--secondary-color);
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .speaker-topic {
+            color: #666;
+            font-style: italic;
         }
         
         /* OBJECTIVES SECTION */
@@ -489,37 +689,42 @@
         .objectives-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
+            gap: 35px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
         .objective-card {
             background: white;
             border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            border-top: 5px solid var(--accent-color);
         }
         
         .objective-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
         .objective-card i {
-            font-size: 40px;
+            font-size: 48px;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .objective-card h3 {
             color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
         }
         
         .objective-card p {
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 17px;
         }
         
         /* VENUE SECTION */
@@ -530,7 +735,7 @@
         .venue-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
             justify-content: center;
         }
@@ -544,7 +749,12 @@
         .venue-image img {
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .venue-image:hover img {
+            transform: scale(1.02);
         }
         
         .venue-details {
@@ -554,86 +764,100 @@
         
         .venue-details h3 {
             color: var(--primary-color);
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 32px;
+            margin-bottom: 25px;
+            font-weight: 800;
         }
         
         .venue-details p {
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: flex-start;
+            font-size: 17px;
         }
         
         .venue-details i {
             margin-right: 15px;
-            color: var(--primary-color);
-            margin-top: 3px;
+            color: var(--accent-color);
+            margin-top: 5px;
+            font-size: 20px;
         }
         
         .map-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: var(--primary-color);
             color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 16px 35px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 600;
-            margin-top: 15px;
+            font-weight: 700;
+            margin-top: 20px;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(10, 92, 109, 0.2);
+            box-shadow: 0 8px 25px rgba(17, 32, 69, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 16px;
         }
         
         .map-link:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(10, 92, 109, 0.3);
+            background: var(--accent-color);
+            color: var(--dark-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(17, 32, 69, 0.3);
         }
         
         .map-link i {
-            font-size: 20px;
+            font-size: 22px;
         }
         
         .map-hint {
             font-size: 14px;
             color: #666;
-            margin-top: 5px;
+            margin-top: 10px;
             font-style: italic;
         }
         
         /* ORGANIZERS SECTION */
         .organizers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 700px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
         .organizer-card {
             background: white;
             border-radius: 12px;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: transform 0.3s;
+            border-top: 5px solid var(--accent-color);
+        }
+        
+        .organizer-card:hover {
+            transform: translateY(-8px);
         }
         
         .organizer-card img {
-            max-height: 80px;
-            max-width: 200px;
-            margin-bottom: 20px;
+            max-height: 100px;
+            max-width: 250px;
+            margin-bottom: 25px;
             object-fit: contain;
         }
         
         .organizer-card h3 {
             color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 20px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
         }
         
         /* CONTACT SECTION - WhatsApp Only */
@@ -642,37 +866,38 @@
         }
         
         .whatsapp-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
         }
         
         .whatsapp-title {
-            font-size: 24px;
+            font-size: 28px;
             color: var(--primary-color);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            font-weight: 700;
         }
         
         .whatsapp-contacts {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
         
         .whatsapp-contact {
             background: white;
             border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
         }
         
         .whatsapp-contact:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
         .contact-info-whatsapp {
@@ -681,38 +906,41 @@
         
         .contact-info-whatsapp h3 {
             color: var(--primary-color);
-            margin-bottom: 5px;
-            font-size: 18px;
+            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 700;
         }
         
         .contact-info-whatsapp p {
             color: #666;
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;
         }
         
         .whatsapp-btn {
             background: var(--whatsapp-green);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 16px;
         }
         
         .whatsapp-btn:hover {
             background: #1da851;
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
         
         .whatsapp-btn i {
-            font-size: 20px;
+            font-size: 22px;
         }
         
         /* Scroll animations */
@@ -732,7 +960,7 @@
             background: var(--dark-bg);
             color: white;
             text-align: center;
-            padding: 40px 25px;
+            padding: 60px 25px 30px;
         }
         
         .footer-content {
@@ -740,20 +968,22 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            gap: 50px;
             text-align: left;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .footer-column h3 {
             color: var(--accent-color);
-            margin-bottom: 20px;
-            font-size: 20px;
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 700;
         }
         
         .footer-column p {
-            line-height: 1.6;
+            line-height: 1.7;
             opacity: 0.9;
+            font-size: 16px;
         }
         
         .footer-column ul {
@@ -762,29 +992,43 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
             color: white;
             text-decoration: none;
             opacity: 0.9;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .footer-column ul li a:hover {
             opacity: 1;
             color: var(--accent-color);
+            transform: translateX(5px);
         }
         
         .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 30px;
             opacity: 0.8;
-            font-size: 14px;
+            font-size: 15px;
         }
         
         /* RESPONSIVE */
+        @media(max-width: 1100px) {
+            .hero-title {
+                font-size: 52px;
+            }
+            
+            .hero-subtitle {
+                font-size: 24px;
+            }
+        }
+        
         @media(max-width: 900px) {
             #welcome {
                 flex-direction: column;
@@ -801,16 +1045,12 @@
                 right: 10px;
             }
             
-            .join-text {
-                font-size: 52px;
+            .hero-title {
+                font-size: 42px;
             }
             
-            .title-block h1 {
-                font-size: 32px;
-            }
-            
-            .slogan {
-                font-size: 18px;
+            .hero-subtitle {
+                font-size: 20px;
             }
             
             .conference-date {
@@ -818,16 +1058,16 @@
             }
             
             .conference-venue {
-                font-size: 18px;
+                font-size: 20px;
             }
             
             .details-header {
-                font-size: 24px;
+                font-size: 28px;
             }
             
             .category-box {
-                padding: 20px 15px;
-                font-size: 16px;
+                padding: 25px 15px;
+                font-size: 18px;
             }
             
             .registration-fees {
@@ -835,21 +1075,30 @@
             }
             
             .speaker-box img {
-                width: 140px;
-                height: 140px;
+                width: 160px;
+                height: 160px;
             }
             
             .section-title {
-                font-size: 30px;
+                font-size: 36px;
             }
             
             .section {
-                padding: 70px 20px;
+                padding: 80px 20px;
             }
             
             .floating-buttons a {
                 padding: 15px 20px;
                 font-size: 14px;
+            }
+            
+            .countdown-number {
+                font-size: 36px;
+            }
+            
+            .countdown-item {
+                min-width: 110px;
+                padding: 25px 15px;
             }
             
             /* Timeline responsive */
@@ -872,7 +1121,7 @@
             .whatsapp-contact {
                 flex-direction: column;
                 text-align: center;
-                gap: 15px;
+                gap: 20px;
             }
             
             .contact-info-whatsapp {
@@ -881,8 +1130,12 @@
         }
         
         @media(max-width: 600px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
             .nav-container {
-                gap: 15px;
+                gap: 20px;
             }
             
             .conference-date {
@@ -901,6 +1154,7 @@
             
             .floating-buttons a {
                 padding: 12px 20px;
+                font-size: 13px;
             }
             
             .timeline::before {
@@ -922,6 +1176,67 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 35px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .countdown {
+                gap: 15px;
+            }
+            
+            .countdown-item {
+                min-width: 90px;
+                padding: 20px 10px;
+            }
+            
+            .countdown-number {
+                font-size: 32px;
+            }
+            
+            .countdown-label {
+                font-size: 14px;
+            }
+            
+            .countdown-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media(max-width: 400px) {
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 75px;
+                padding: 15px 8px;
+            }
+            
+            .countdown-number {
+                font-size: 28px;
+            }
+            
+            .nav-container {
+                gap: 15px;
+                font-size: 14px;
             }
         }
     </style>
@@ -940,39 +1255,59 @@
         </div>
     </nav>
     
-    <!-- FLOATING BUTTONS -->
-    <div class="floating-buttons">
-        <a href="https://forms.google.com" target="_blank">
-            <i class="fas fa-user-plus"></i> Register Now
-        </a>
-        <a href="https://forms.google.com" target="_blank">
-            <i class="fas fa-paper-plane"></i> Submit Abstract
-        </a>
-    </div>
-    
     <!-- HERO -->
     <section id="hero" class="hero">
         <div class="hero-content">
-            <div class="join-text">Let's Join</div>
-            <div class="title-row">
-                <img src="images/logo-left.jpg" alt="Logo Left">
-                <div class="title-block">
-                    <h1>
-                        2nd TERENGGANU ALLIED HEALTH PROFESSIONAL (AHP)<br>
-                        SCIENTIFIC CONFERENCE
-                    </h1>
-                    <div class="slogan">
-                        Empowering Allied Health Professional:<br>
-                        Leading Change for Better Health Outcomes
-                    </div>
-                </div>
-                <img src="images/logo-right.png" alt="Logo Right">
+            <div class="conference-tag">Scientific Conference</div>
+            <h1 class="hero-title">
+                2nd <span>TERENGGANU</span><br>
+                ALLIED HEALTH PROFESSIONAL
+            </h1>
+            <div class="hero-subtitle">
+                Empowering Allied Health Professional: Leading Change for Better Health Outcomes
             </div>
-            <div class="date-badge">
-                <i class="fas fa-calendar-alt"></i> 22-23 September 2026
+            <div class="hero-date">
+                <i class="fas fa-calendar-alt"></i> September 22-23, 2026
+            </div>
+            <div class="hero-buttons">
+                <a href="https://forms.google.com" target="_blank" class="hero-btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Register Now
+                </a>
+                <a href="https://forms.google.com" target="_blank" class="hero-btn btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Submit Abstract
+                </a>
             </div>
         </div>
     </section>
+    
+    <!-- COUNTDOWN TIMER -->
+    <div class="countdown-container">
+        <h2 class="countdown-title">Conference Countdown</h2>
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        <div class="countdown-note">
+            Mark your calendar for the premier Allied Health event in Terengganu
+        </div>
+        <div class="conference-date-badge">
+            <i class="fas fa-calendar-check"></i> September 22-23, 2026
+        </div>
+    </div>
     
     <!-- WELCOME -->
     <section id="welcome" class="section">
@@ -1035,19 +1370,19 @@
                 <img src="images/speaker1.jpg" alt="Speaker 1">
                 <h4>Prof. Dr. Syed Hatim Noor</h4>
                 <div class="speaker-title">Professor of Medical Statistics</div>
-                <p>Topic: aaaaaaaaaaaa</p>
+                <p class="speaker-topic">Topic: Advanced Statistical Methods in Healthcare Research</p>
             </div>
             <div class="speaker-box animate">
                 <img src="images/speaker2.jpg" alt="Speaker 2">
                 <h4>Dr. Nik Armiza Binti Mat Rashid</h4>
                 <div class="speaker-title">Histopathology Technology Innovator</div>
-                <p>Topic: Digital Transformation in Allied Health</p>
+                <p class="speaker-topic">Topic: Digital Transformation in Allied Health</p>
             </div>
             <div class="speaker-box animate">
                 <img src="images/speaker3.jpg" alt="Speaker 3">
-                <h4>Dr. EJEN ALI</h4>
-                <div class="speaker-title">EJEN RAHSIA</div>
-                <p>Topic: yoyo battle</p>
+                <h4>Dr. Sarah Johnson</h4>
+                <div class="speaker-title">Healthcare Policy Expert</div>
+                <p class="speaker-topic">Topic: Future Trends in Allied Health Practice</p>
             </div>
         </div>
         
@@ -1057,6 +1392,7 @@
             <div class="category-box animate">Oral Research</div>
             <div class="category-box animate">Oral Case Study</div>
             <div class="category-box animate">Poster Presentation</div>
+            <div class="category-box animate">Workshop</div>
         </div>
         
         <!-- REGISTRATION FEES -->
@@ -1142,14 +1478,14 @@
         <h2 class="section-title">Organizers</h2>
         <div class="organizers-grid">
             <div class="organizer-card animate">
-                <img src="images/organizer2.png" alt="Ministry of Health Malaysia Logo">
-                <h3>Jabatan Kesihatan Negeri Terengganu</h3>
-                <p>Collaborating with the Ministry of Health (JKNT) to promote excellence in allied health practice and research.</p>
+                <img src="images/organizer1.png" alt="Allied Health Practitioners Negeri Terengganu Logo">
+                <h3>Allied Health Practitioners Negeri Terengganu</h3>
+                <p>The main organizing body representing allied health professionals in Terengganu, Malaysia.</p>
             </div>
             <div class="organizer-card animate">
-                <img src="images/organizer1.png" alt="Allied Health Practitioners Negeri Terengganu Logo">
-                <h3>Persatuan Ahli Sains Kesihatan Bersekutu Terengganu(PASKBT)</h3>
-                <p>The main organizing body representing Allied Health Professionals in Terengganu, Malaysia.</p>
+                <img src="images/organizer2.png" alt="Ministry of Health Malaysia Logo">
+                <h3>Ministry of Health Malaysia</h3>
+                <p>Collaborating with the Ministry of Health to promote excellence in allied health practice and research.</p>
             </div>
         </div>
     </section>
@@ -1176,15 +1512,15 @@
                         <h3>Abstract & Technical Support</h3>
                         <p>For abstract submission and technical questions</p>
                     </div>
-                    <a href="https://wa.link/98umws" 
+                    <a href="https://wa.me/60129876543?text=Hello%20AHP%20Conference%20Team,%20I%20have%20a%20question%20about%20abstract%20submission" 
                        target="_blank" 
                        class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Click Me
+                        <i class="fab fa-whatsapp"></i> +60 12-987 6543
                     </a>
                 </div>
             </div>
-            <p style="margin-top: 30px; color: #666; font-size: 14px;">
-                <i class="fas fa-info-circle"></i> Click on any WhatsApp button to start a conversation directly in WhatsApp. Our team will respond during office hours.
+            <p style="margin-top: 30px; color: #666; font-size: 16px;">
+                <i class="fas fa-info-circle"></i> Click on any WhatsApp button to start a conversation directly in WhatsApp. Our team will respond during office hours (9AM-5PM, Monday-Friday).
             </p>
         </div>
     </section>
@@ -1198,19 +1534,19 @@
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#welcome">Welcome Message</a></li>
-                    <li><a href="#details">Conference Details</a></li>
-                    <li><a href="#venue">Venue Information</a></li>
-                    <li><a href="#organizers">Organizers</a></li>
+                    <li><a href="#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#welcome"><i class="fas fa-chevron-right"></i> Welcome Message</a></li>
+                    <li><a href="#details"><i class="fas fa-chevron-right"></i> Conference Details</a></li>
+                    <li><a href="#venue"><i class="fas fa-chevron-right"></i> Venue Information</a></li>
+                    <li><a href="#organizers"><i class="fas fa-chevron-right"></i> Organizers</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Important Links</h3>
                 <ul>
-                    <li><a href="https://forms.google.com" target="_blank">Registration Form</a></li>
-                    <li><a href="https://forms.google.com" target="_blank">Abstract Submission</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="https://forms.google.com" target="_blank"><i class="fas fa-external-link-alt"></i> Registration Form</a></li>
+                    <li><a href="https://forms.google.com" target="_blank"><i class="fas fa-external-link-alt"></i> Abstract Submission</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -1220,6 +1556,46 @@
     </footer>
     
     <script>
+        // COUNTDOWN TIMER
+        function updateCountdown() {
+            const conferenceDate = new Date('September 22, 2026 09:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = conferenceDate - now;
+            
+            if (timeLeft < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.querySelector('.countdown-title').textContent = 'Conference Has Started!';
+                return;
+            }
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // NAVBAR SCROLL EFFECT
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
         // SCROLL ANIMATIONS
         const elements = document.querySelectorAll('.animate');
         const observer = new IntersectionObserver(entries => {
@@ -1232,26 +1608,6 @@
         
         elements.forEach(el => observer.observe(el));
         
-        // WELCOME SECTION PARALLAX ENTRANCE
-        const welcomeSection = document.querySelector('#welcome');
-        const welcomeImage = document.querySelector('.welcome-image');
-        const welcomeText = document.querySelector('.welcome-text');
-        
-        window.addEventListener('scroll', () => {
-            const sectionTop = welcomeSection.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if(sectionTop < windowHeight) {
-                const progress = Math.min(1, (windowHeight - sectionTop) / windowHeight);
-                // Image moves from left to center
-                welcomeImage.style.transform = `translateX(${(-50 + 50 * progress)}%)`;
-                welcomeImage.style.opacity = progress;
-                // Text moves from right to center
-                welcomeText.style.transform = `translateX(${(50 - 50 * progress)}%)`;
-                welcomeText.style.opacity = progress;
-            }
-        });
-        
         // SMOOTH SCROLL FOR NAVIGATION
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1262,7 +1618,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
@@ -1276,7 +1632,7 @@
             
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 120;
                 const sectionHeight = section.clientHeight;
                 if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
@@ -1300,7 +1656,7 @@
             const mapLink = document.querySelector('.map-link');
             if(mapLink) {
                 mapLink.addEventListener('mouseenter', function() {
-                    this.innerHTML = '<i class="fas fa-map-marked-alt"></i> Click here to open Google Maps';
+                    this.innerHTML = '<i class="fas fa-map-marked-alt"></i> Open in Google Maps';
                 });
                 mapLink.addEventListener('mouseleave', function() {
                     this.innerHTML = '<i class="fas fa-map-marked-alt"></i> View on Google Maps';
