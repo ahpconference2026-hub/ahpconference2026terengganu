@@ -1168,6 +1168,89 @@
             font-weight: 700;
         }
         
+        /* SPONSORS SECTION STYLES */
+        .sponsors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .major-sponsors {
+            margin-bottom: 60px;
+        }
+        
+        .supporting-sponsors {
+            margin-bottom: 40px;
+        }
+        
+        .sponsor-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .sponsor-logo:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(17, 32, 69, 0.25);
+        }
+        
+        .sponsor-logo.major {
+            flex: 1;
+            min-width: 180px;
+            max-width: 200px;
+            min-height: 180px;
+        }
+        
+        .sponsor-logo.supporting {
+            flex: 1;
+            min-width: 120px;
+            max-width: 140px;
+            min-height: 120px;
+        }
+        
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+        
+        .sponsor-logo.major img {
+            height: 100px;
+        }
+        
+        .sponsor-logo.supporting img {
+            height: 70px;
+        }
+        
+        .sponsor-logo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .sponsor-name {
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        /* For supporting sponsors that don't have names displayed */
+        .sponsor-logo.supporting .sponsor-name {
+            display: none;
+        }
+        
         /* CONTACT SECTION - WhatsApp Only */
         #contact {
             background: var(--light-bg);
@@ -1406,6 +1489,23 @@
                 padding: 25px 15px;
             }
             
+            /* Sponsors responsive */
+            .sponsors-grid {
+                gap: 25px;
+            }
+            
+            .sponsor-logo.major {
+                min-width: 150px;
+                max-width: 170px;
+                min-height: 150px;
+            }
+            
+            .sponsor-logo.supporting {
+                min-width: 100px;
+                max-width: 120px;
+                min-height: 100px;
+            }
+            
             /* Timeline responsive */
             .timeline::before {
                 left: 20px;
@@ -1453,6 +1553,26 @@
             .category-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
+            }
+            
+            .sponsor-logo.major {
+                min-width: 130px;
+                max-width: 140px;
+                min-height: 130px;
+            }
+            
+            .sponsor-logo.supporting {
+                min-width: 80px;
+                max-width: 90px;
+                min-height: 80px;
+            }
+            
+            .sponsor-logo.major img {
+                height: 80px;
+            }
+            
+            .sponsor-logo.supporting img {
+                height: 50px;
             }
             
             .countdown {
@@ -1505,6 +1625,24 @@
             
             .organizers-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .sponsors-grid {
+                gap: 15px;
+            }
+            
+            .sponsor-logo.major {
+                min-width: calc(50% - 20px);
+                max-width: calc(50% - 20px);
+                min-height: 120px;
+                padding: 15px;
+            }
+            
+            .sponsor-logo.supporting {
+                min-width: calc(33.33% - 15px);
+                max-width: calc(33.33% - 15px);
+                min-height: 90px;
+                padding: 15px;
             }
             
             .footer-content {
@@ -1596,6 +1734,16 @@
                 font-size: 12px;
                 padding: 4px 8px;
             }
+            
+            .sponsor-logo.major {
+                min-width: calc(50% - 15px);
+                max-width: calc(50% - 15px);
+            }
+            
+            .sponsor-logo.supporting {
+                min-width: calc(33.33% - 10px);
+                max-width: calc(33.33% - 10px);
+            }
         }
     </style>
 </head>
@@ -1609,6 +1757,7 @@
             <a href="#details">Conference Details</a>
             <a href="#venue">Venue</a>
             <a href="#organizers">Organizers</a>
+            <a href="#sponsors">Sponsors</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -1962,7 +2111,17 @@
                    title="Click to open in Google Maps">
                     <i class="fas fa-map-marked-alt"></i> View on Google Maps
                 </a>
-                <div class="map-hint">Click the icon above to open location in Google Maps</div>
+                
+                <!-- ADDED BOOKING BUTTON -->
+                <a href="https://wa.me/60123456789?text=Hello%20Ar-Riyadah%20Residence,%20I%20would%20like%20to%20book%20accommodation%20for%20the%20AHP%20Conference" 
+                   target="_blank" 
+                   class="map-link"
+                   style="margin-left: 15px; background: var(--whatsapp-green);"
+                   title="Click to book accommodation via WhatsApp">
+                    <i class="fab fa-whatsapp"></i> Click for Bookings
+                </a>
+                
+                <div class="map-hint">Click the icons above to open location in Google Maps or book accommodation</div>
             </div>
         </div>
     </section>
@@ -1982,6 +2141,75 @@
                 <p>The main organizing body representing Allied Health Professionals in Terengganu, Malaysia.</p>
             </div>
         </div>
+    </section>
+    
+    <!-- SPONSORS SECTION -->
+    <section id="sponsors" class="section" style="background: var(--light-bg);">
+        <h2 class="section-title" data-aos="fade-up">Sponsors</h2>
+        
+        <!-- Major Sponsors (5 big logos) -->
+        <h3 class="details-header" data-aos="fade-up" style="margin-bottom: 40px;">Major Sponsors</h3>
+        <div class="sponsors-grid major-sponsors" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://www.moh.gov.my/" target="_blank" class="sponsor-logo major">
+                <img src="images/sponsor1.png" alt="Ministry of Health Malaysia">
+                <div class="sponsor-name">Ministry of Health</div>
+            </a>
+            <a href="https://www.ummc.edu.my/" target="_blank" class="sponsor-logo major">
+                <img src="images/sponsor2.png" alt="University Malaya Medical Centre">
+                <div class="sponsor-name">UMMC</div>
+            </a>
+            <a href="https://www.unisza.edu.my/" target="_blank" class="sponsor-logo major">
+                <img src="images/sponsor3.png" alt="University Sultan Zainal Abidin">
+                <div class="sponsor-name">UniSZA</div>
+            </a>
+            <a href="https://www.uitm.edu.my/" target="_blank" class="sponsor-logo major">
+                <img src="images/sponsor4.png" alt="Universiti Teknologi MARA">
+                <div class="sponsor-name">UiTM</div>
+            </a>
+            <a href="https://www.ump.edu.my/" target="_blank" class="sponsor-logo major">
+                <img src="images/sponsor5.png" alt="University Malaysia Pahang">
+                <div class="sponsor-name">UMP</div>
+            </a>
+        </div>
+        
+        <!-- Supporting Sponsors (10 smaller logos) -->
+        <h3 class="details-header" data-aos="fade-up" style="margin-top: 80px; margin-bottom: 40px;">Supporting Sponsors</h3>
+        <div class="sponsors-grid supporting-sponsors" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://www.roche.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor6.png" alt="Roche Diagnostics">
+            </a>
+            <a href="https://www.abbott.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor7.png" alt="Abbott Laboratories">
+            </a>
+            <a href="https://www.siemens-healthineers.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor8.png" alt="Siemens Healthineers">
+            </a>
+            <a href="https://www.bd.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor9.png" alt="Becton Dickinson">
+            </a>
+            <a href="https://www.thermofisher.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor10.png" alt="Thermo Fisher Scientific">
+            </a>
+            <a href="https://www.sysmex.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor11.png" alt="Sysmex Corporation">
+            </a>
+            <a href="https://www.medtronic.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor12.png" alt="Medtronic">
+            </a>
+            <a href="https://www.bostonscientific.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor13.png" alt="Boston Scientific">
+            </a>
+            <a href="https://www.stryker.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor14.png" alt="Stryker Corporation">
+            </a>
+            <a href="https://www.jnj.com/" target="_blank" class="sponsor-logo supporting">
+                <img src="images/sponsor15.png" alt="Johnson & Johnson">
+            </a>
+        </div>
+        
+        <p style="text-align: center; margin-top: 50px; color: #666; font-size: 16px;">
+            <i class="fas fa-handshake"></i> We thank all our sponsors for their generous support
+        </p>
     </section>
     
     <!-- CONTACT - WhatsApp Only -->
@@ -2033,6 +2261,7 @@
                     <li><a href="#details"><i class="fas fa-chevron-right"></i> Conference Details</a></li>
                     <li><a href="#venue"><i class="fas fa-chevron-right"></i> Venue Information</a></li>
                     <li><a href="#organizers"><i class="fas fa-chevron-right"></i> Organizers</a></li>
+                    <li><a href="#sponsors"><i class="fas fa-chevron-right"></i> Sponsors</a></li>
                 </ul>
             </div>
             <div class="footer-column" data-aos="fade-up" data-aos-delay="600">
