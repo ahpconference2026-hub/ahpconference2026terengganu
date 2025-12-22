@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
         
-        /* NAVBAR - Summit Style */
+        /* NAVBAR - Summit Style - MOBILE FIXED */
         .navbar {
             position: fixed;
             top: 0;
@@ -61,6 +61,10 @@
             gap: 40px;
             flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .nav-container a {
@@ -73,6 +77,7 @@
             padding: 5px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
         
         .nav-container a:hover {
@@ -129,6 +134,7 @@
             flex-wrap: nowrap;
             max-width: 900px;
             margin: 0 auto 30px auto;
+            padding: 0 15px;
         }
         
         .countdown-item {
@@ -376,6 +382,9 @@
             max-width: 1000px;
             z-index: 2;
             position: relative;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .hero-title {
@@ -422,6 +431,7 @@
             margin-right: auto;
             line-height: 1.4;
             opacity: 0.95;
+            padding: 0 20px;
         }
         
         .hero-date {
@@ -432,6 +442,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            padding: 0 20px;
+            flex-wrap: wrap;
         }
         
         .hero-date i {
@@ -444,6 +456,12 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 50px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
         }
         
         .hero-btn {
@@ -458,6 +476,10 @@
             gap: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+            box-sizing: border-box;
         }
         
         .btn-primary {
@@ -492,6 +514,7 @@
             max-width: 1200px;
             margin: auto;
             position: relative;
+            box-sizing: border-box;
         }
         
         .section-title {
@@ -502,6 +525,8 @@
             position: relative;
             font-weight: 800;
             text-transform: uppercase;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .section-title::after {
@@ -522,11 +547,15 @@
             justify-content: flex-start;
             gap: 50px;
             overflow: hidden;
+            padding: 0 20px;
         }
         
         .welcome-image {
             flex: 0 0 auto;
             position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         
         .welcome-image::before {
@@ -556,6 +585,8 @@
         .welcome-text {
             flex: 1 1 auto;
             max-width: 650px;
+            width: 100%;
+            padding: 0 10px;
         }
         
         .welcome-text h2 {
@@ -582,6 +613,8 @@
         #details {
             background: var(--light-bg);
             text-align: center;
+            padding: 100px 20px;
+            box-sizing: border-box;
         }
         
         .conference-date {
@@ -589,6 +622,7 @@
             font-weight: 800;
             color: var(--primary-color);
             margin-bottom: 15px;
+            padding: 0 20px;
         }
         
         .conference-venue {
@@ -596,6 +630,7 @@
             color: var(--secondary-color);
             margin-bottom: 50px;
             font-weight: 600;
+            padding: 0 20px;
         }
         
         .details-header {
@@ -604,6 +639,8 @@
             color: var(--primary-color);
             margin: 50px 0 35px 0;
             text-transform: uppercase;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         /* CATEGORY GRID - 3 CATEGORIES ONLY */
@@ -613,6 +650,8 @@
             gap: 25px;
             max-width: 900px;
             margin: 0 auto 50px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .category-box {
@@ -647,6 +686,8 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .fee-item {
@@ -659,6 +700,8 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .fee-item:hover {
@@ -681,12 +724,14 @@
             position: relative;
             max-width: 900px;
             margin: 0 auto 80px auto;
+            padding: 0 20px 0 40px;
+            box-sizing: border-box;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            left: 0;
+            left: 20px;
             top: 0;
             bottom: 0;
             width: 5px;
@@ -697,7 +742,7 @@
         .timeline-item {
             position: relative;
             margin-bottom: 40px;
-            padding-left: 40px;
+            padding-left: 30px;
         }
         
         .timeline-item:last-child {
@@ -707,7 +752,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -10px;
+            left: 12px;
             top: 5px;
             width: 24px;
             height: 24px;
@@ -799,6 +844,8 @@
             max-width: 1100px;
             margin: 0 auto 80px auto;
             text-align: center;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .speaker-box {
@@ -846,6 +893,7 @@
             color: var(--primary-color);
             margin: 0 0 8px 0;
             font-weight: 700;
+            line-height: 1.3;
         }
         
         .speaker-title {
@@ -860,10 +908,12 @@
             font-style: italic;
         }
         
-        /* PROGRAMS SECTION STYLES */
+        /* PROGRAMS SECTION STYLES - MOBILE FIXED */
         .programs-section {
             max-width: 900px;
             margin: 0 auto 60px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .program-card {
@@ -937,6 +987,12 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
+            max-width: 350px;
+            justify-content: center;
+            box-sizing: border-box;
+            margin: 0 auto;
+            display: block;
         }
         
         .program-download-btn:hover {
@@ -959,23 +1015,6 @@
             font-size: 18px;
         }
         
-        @media (max-width: 768px) {
-            .program-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 25px;
-            }
-            
-            .program-icon {
-                margin: 0 auto 20px auto;
-            }
-            
-            .program-download-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        
         /* OBJECTIVES SECTION */
         #objectives {
             padding-bottom: 50px;
@@ -987,6 +1026,7 @@
             gap: 35px;
             max-width: 1100px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .objective-card {
@@ -1027,7 +1067,7 @@
             font-size: 17px;
         }
         
-        /* VENUE SECTION */
+        /* VENUE SECTION - USED AS REFERENCE */
         #venue {
             background: var(--light-bg);
         }
@@ -1038,6 +1078,8 @@
             gap: 50px;
             align-items: center;
             justify-content: center;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .venue-image {
@@ -1046,6 +1088,8 @@
             position: relative;
             overflow: hidden;
             border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
         .venue-image img {
@@ -1062,6 +1106,7 @@
         .venue-details {
             flex: 1;
             min-width: 300px;
+            padding: 0 10px;
         }
         
         .venue-details h3 {
@@ -1084,6 +1129,7 @@
             color: var(--accent-color);
             margin-top: 5px;
             font-size: 20px;
+            flex-shrink: 0;
         }
         
         .map-link {
@@ -1102,6 +1148,10 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-size: 16px;
+            width: 100%;
+            max-width: 350px;
+            justify-content: center;
+            box-sizing: border-box;
         }
         
         .map-link:hover {
@@ -1120,6 +1170,9 @@
             color: #666;
             margin-top: 10px;
             font-style: italic;
+            text-align: center;
+            width: 100%;
+            display: block;
         }
         
         /* ORGANIZERS SECTION */
@@ -1129,6 +1182,7 @@
             gap: 40px;
             max-width: 900px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .organizer-card {
@@ -1177,6 +1231,7 @@
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto 60px auto;
+            padding: 0 20px;
         }
         
         .major-sponsors {
@@ -1260,6 +1315,7 @@
             max-width: 700px;
             margin: 0 auto;
             text-align: center;
+            padding: 0 20px;
         }
         
         .whatsapp-title {
@@ -1284,6 +1340,8 @@
             align-items: center;
             justify-content: space-between;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .whatsapp-contact:hover {
@@ -1293,6 +1351,8 @@
         
         .contact-info-whatsapp {
             text-align: left;
+            flex: 1;
+            min-width: 250px;
         }
         
         .contact-info-whatsapp h3 {
@@ -1339,7 +1399,7 @@
             background: var(--dark-bg);
             color: white;
             text-align: center;
-            padding: 60px 25px 30px;
+            padding: 60px 20px 30px;
         }
         
         .footer-content {
@@ -1350,6 +1410,7 @@
             gap: 50px;
             text-align: left;
             margin-bottom: 40px;
+            padding: 0 20px;
         }
         
         .footer-column h3 {
@@ -1395,9 +1456,10 @@
             padding-top: 30px;
             opacity: 0.8;
             font-size: 15px;
+            padding: 0 20px;
         }
         
-        /* RESPONSIVE */
+        /* RESPONSIVE - ONLY MINIMAL CHANGES */
         @media(max-width: 1100px) {
             .hero-title {
                 font-size: 52px;
@@ -1410,24 +1472,13 @@
             .conference-tag {
                 font-size: 22px;
             }
+            
+            .conference-date {
+                font-size: 50px;
+            }
         }
         
         @media(max-width: 900px) {
-            #welcome {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .welcome-text {
-                max-width: 100%;
-                padding: 0;
-                margin: 0 auto;
-            }
-            
-            .floating-buttons {
-                right: 10px;
-            }
-            
             .hero-title {
                 font-size: 42px;
             }
@@ -1458,10 +1509,6 @@
                 font-size: 18px;
             }
             
-            .registration-fees {
-                font-size: 18px;
-            }
-            
             .speaker-box img {
                 width: 160px;
                 height: 160px;
@@ -1475,11 +1522,6 @@
                 padding: 80px 20px;
             }
             
-            .floating-buttons a {
-                padding: 15px 20px;
-                font-size: 14px;
-            }
-            
             .countdown-number {
                 font-size: 36px;
             }
@@ -1490,10 +1532,6 @@
             }
             
             /* Sponsors responsive */
-            .sponsors-grid {
-                gap: 25px;
-            }
-            
             .sponsor-logo.major {
                 min-width: 180px;
                 max-width: 200px;
@@ -1505,66 +1543,44 @@
                 max-width: 120px;
                 min-height: 100px;
             }
-            
-            /* Timeline responsive */
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                padding-left: 60px;
-            }
-            
-            .timeline-item::before {
-                left: 12px;
-            }
-            
-            .venue-container {
-                flex-direction: column;
-            }
-            
-            .whatsapp-contact {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .contact-info-whatsapp {
-                text-align: center;
-            }
-            
-            .timeline-date {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            
-            .calendar-link {
-                margin-left: 0;
-            }
-            
-            /* Adjust particle count on mobile */
-            .particle {
-                display: none;
-            }
         }
         
         @media(max-width: 768px) {
+            /* NAVBAR FIX - Keep original size but centered */
+            .nav-container {
+                gap: 15px;
+                justify-content: center;
+                padding: 0 15px;
+            }
+            
+            .nav-container a {
+                font-size: 14px;
+            }
+            
             .category-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .category-box {
+                padding: 25px 15px;
+                font-size: 18px;
             }
             
             .sponsor-logo.major {
                 min-width: 160px;
                 max-width: 180px;
                 min-height: 160px;
+                padding: 20px;
             }
             
             .sponsor-logo.supporting {
                 min-width: 80px;
                 max-width: 90px;
                 min-height: 80px;
+                padding: 15px;
             }
             
             .sponsor-logo.major img {
@@ -1577,105 +1593,6 @@
             
             .countdown {
                 flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .countdown-item {
-                min-width: calc(50% - 20px);
-            }
-            
-            .floating-buttons {
-                bottom: 20px;
-                top: auto;
-                right: 50%;
-                transform: translateX(50%);
-                flex-direction: row;
-            }
-        }
-        
-        @media(max-width: 600px) {
-            .navbar {
-                padding: 15px 0;
-            }
-            
-            .nav-container {
-                gap: 20px;
-            }
-            
-            .conference-date {
-                font-size: 36px;
-            }
-            
-            .floating-buttons a {
-                padding: 12px 20px;
-                font-size: 13px;
-            }
-            
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                padding-left: 70px;
-            }
-            
-            .timeline-item::before {
-                left: 22px;
-            }
-            
-            .organizers-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .sponsors-grid {
-                gap: 15px;
-            }
-            
-            .sponsor-logo.major {
-                min-width: calc(50% - 20px);
-                max-width: calc(50% - 20px);
-                min-height: 140px;
-                padding: 20px;
-            }
-            
-            .sponsor-logo.supporting {
-                min-width: calc(33.33% - 15px);
-                max-width: calc(33.33% - 15px);
-                min-height: 90px;
-                padding: 15px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 35px;
-            }
-            
-            .hero-title {
-                font-size: 32px;
-            }
-            
-            .hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .conference-tag {
-                font-size: 18px;
-                padding: 10px 20px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            .countdown {
                 gap: 15px;
             }
             
@@ -1688,29 +1605,120 @@
                 font-size: 32px;
             }
             
-            .countdown-label {
+            /* HERO BUTTONS FIX - Keep original size but proper width */
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                max-width: 350px;
+            }
+            
+            .hero-btn {
+                width: 100%;
+                min-width: 100%;
+            }
+            
+            /* PROGRAM BUTTONS FIX - Same width as venue image */
+            .program-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .program-icon {
+                margin-bottom: 20px;
+            }
+            
+            .program-download-btn {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            /* Floating buttons hide on mobile */
+            .floating-buttons {
+                display: none;
+            }
+        }
+        
+        @media(max-width: 600px) {
+            .hero-title {
+                font-size: 36px;
+                line-height: 1.1;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+                line-height: 1.3;
+            }
+            
+            .conference-tag {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+            
+            .hero-date {
+                font-size: 20px;
+            }
+            
+            .conference-date {
+                font-size: 36px;
+            }
+            
+            .conference-venue {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            .details-header {
+                font-size: 24px;
+            }
+            
+            .speaker-box {
+                padding: 25px 20px;
+            }
+            
+            .speaker-box img {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .speaker-box h4 {
+                font-size: 20px;
+            }
+            
+            .speaker-title {
                 font-size: 14px;
             }
             
-            .countdown-title {
-                font-size: 28px;
+            .program-card h4 {
+                font-size: 20px;
             }
             
-            .conference-date-badge {
-                padding: 12px 20px;
-                font-size: 16px;
+            .whatsapp-contact {
+                padding: 25px 20px;
             }
             
-            .conference-date-badge::after {
-                font-size: 10px;
+            .contact-info-whatsapp h3 {
+                font-size: 18px;
+            }
+            
+            /* Timeline mobile fix */
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-item::before {
+                left: 2px;
             }
         }
         
         @media(max-width: 400px) {
-            .countdown {
-                gap: 10px;
-            }
-            
             .countdown-item {
                 min-width: calc(50% - 10px);
                 padding: 15px 8px;
@@ -1721,28 +1729,34 @@
             }
             
             .nav-container {
-                gap: 15px;
-                font-size: 14px;
+                gap: 10px;
             }
             
-            .category-box {
-                padding: 25px 15px;
+            .nav-container a {
+                font-size: 12px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 17px;
+            }
+        }
+        
+        /* EXTRA SMALL DEVICES */
+        @media(max-width: 350px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
                 font-size: 16px;
             }
             
-            .calendar-link {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-            
-            .sponsor-logo.major {
-                min-width: calc(50% - 15px);
-                max-width: calc(50% - 15px);
-            }
-            
-            .sponsor-logo.supporting {
-                min-width: calc(33.33% - 10px);
-                max-width: calc(33.33% - 10px);
+            .conference-tag {
+                font-size: 16px;
             }
         }
     </style>
@@ -1761,7 +1775,7 @@
         </div>
     </nav>
     
-    <!-- FLOATING BUTTONS -->
+    <!-- FLOATING BUTTONS (Hidden on mobile) -->
     <div class="floating-buttons">
         <a href="https://forms.google.com" target="_blank">
             <i class="fas fa-user-plus"></i> Register
@@ -1898,15 +1912,15 @@
         <div class="speakers-grid">
             <div class="speaker-box" data-aos="fade-up" data-aos-delay="200">
                 <img src="images/speaker1.jpg" alt="Speaker 1">
-                <h4>TBA</h4>
-                <div class="speaker-title">TBA</div>
-                <p class="speaker-topic">Topic: TBA</p>
+                <h4>Prof. Dr. Syed Hatim Noor</h4>
+                <div class="speaker-title">Professor of Biomedical Statistics</div>
+                <p class="speaker-topic">Topic: Advanced Statistical Methods in Healthcare Research</p>
             </div>
             <div class="speaker-box" data-aos="fade-up" data-aos-delay="400">
                 <img src="images/speaker2.jpg" alt="Speaker 2">
-                <h4>TBA</h4>
-                <div class="speaker-title">TBA</div>
-                <p class="speaker-topic">Topic: TBA</p>
+                <h4>Dr. Nik Armiza Binti Mat Rashid</h4>
+                <div class="speaker-title">Histopathology Technology Innovator</div>
+                <p class="speaker-topic">Topic: Digital Transformation in Allied Health</p>
             </div>
         </div>
         
@@ -2134,10 +2148,10 @@
                 </a>
                 
                 <!-- ADDED BOOKING BUTTON -->
-                <a href="https://wa.link/m5wpau" 
+                <a href="https://wa.me/60123456789?text=Hello%20Ar-Riyadah%20Residence,%20I%20would%20like%20to%20book%20accommodation%20for%20the%20AHP%20Conference" 
                    target="_blank" 
                    class="map-link"
-                   style="margin-left: 15px; background: var(--whatsapp-green);"
+                   style="margin-left: 15px; background: var(--whatsapp-green); margin-top: 15px;"
                    title="Click to book accommodation via WhatsApp">
                     <i class="fab fa-whatsapp"></i> Click for Bookings
                 </a>
