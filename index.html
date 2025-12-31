@@ -1997,7 +1997,7 @@
             
             .welcome-message {
                 font-size: 16px;
-                text-align: left; /* On mobile, left align is better for readability */
+                text-align: justify; /* On mobile, left align is better for readability */
             }
             
             .sponsor-logo.major {
@@ -2120,6 +2120,12 @@
             .welcome-message {
                 font-size: 15px;
                 line-height: 1.6;
+                text-align: justify; /* FIXED: Changed from left to justify */
+                text-justify: inter-word;
+                word-spacing: -0.02em;
+                letter-spacing: 0.01em;
+                hyphens: auto;
+                -webkit-hyphens: auto;
             }
             
             .floating-buttons a {
@@ -2327,6 +2333,11 @@
             
             .welcome-message {
                 font-size: 14px;
+                text-align: justify; /* FIXED: Changed from left to justify */
+                text-justify: inter-word;
+                word-spacing: -0.01em;
+                hyphens: auto;
+                -webkit-hyphens: auto;
             }
             
             .countdown {
