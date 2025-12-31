@@ -682,68 +682,129 @@
             border-radius: 3px;
         }
         
-        /* WELCOME */
+        /* =========================================== */
+        /* UPDATED WELCOME SECTION - APPLE-STYLE DESIGN */
+        /* =========================================== */
         #welcome {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            justify-content: flex-start;
-            gap: 50px;
-            overflow: hidden;
-        }
-        
-        .welcome-image {
-            flex: 0 0 auto;
+            text-align: center;
+            padding: 120px 20px;
             position: relative;
         }
         
-        .welcome-image::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Circular Profile Image Container */
+        .profile-image-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(17, 32, 69, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .profile-image-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(17, 32, 69, 0.3);
+        }
+        
+        .profile-image {
             width: 100%;
             height: 100%;
-            background: var(--accent-color);
-            border-radius: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+        
+        /* Welcome Title */
+        .welcome-title {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-align: center;
+        }
+        
+        .welcome-subtitle {
+            color: var(--secondary-color);
+            font-size: 22px;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        /* Speech Bubble / Chat Box */
+        .speech-bubble {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .speech-bubble:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Speech Bubble Pointer/Tail */
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid white;
+        }
+        
+        /* Speech Bubble Inner Glow Effect */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 18px solid var(--accent-color);
             z-index: -1;
         }
         
-        .welcome-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .welcome-image:hover img {
-            transform: translate(-10px, -10px) scale(1.03);
-        }
-        
-        .welcome-text {
-            flex: 1 1 auto;
-            max-width: 650px;
-        }
-        
-        .welcome-text h2 {
-            color: var(--primary-color);
-            font-size: 36px;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        
-        .welcome-text h3 {
-            color: var(--secondary-color);
-            font-size: 22px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-        
-        .welcome-text p {
+        /* Welcome Message Text */
+        .welcome-message {
             line-height: 1.7;
-            margin-bottom: 20px;
             font-size: 17px;
+            color: #555;
+        }
+        
+        .welcome-message p {
+            margin-bottom: 20px;
+        }
+        
+        .welcome-message b {
+            color: var(--primary-color);
+            font-weight: 700;
         }
         
         /* CONFERENCE DETAILS */
@@ -1648,18 +1709,24 @@
             .nav-menu {
                 gap: 30px;
             }
+            
+            /* Welcome section responsive */
+            .welcome-title {
+                font-size: 32px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 20px;
+            }
+            
+            .speech-bubble {
+                padding: 40px 30px;
+            }
         }
         
         @media(max-width: 900px) {
             #welcome {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .welcome-text {
-                max-width: 100%;
-                padding: 0;
-                margin: 0 auto;
+                padding: 100px 20px;
             }
             
             .floating-buttons {
@@ -1733,6 +1800,28 @@
             .countdown-item {
                 min-width: 120px;
                 padding: 25px 15px;
+            }
+            
+            /* Welcome section responsive */
+            .welcome-container {
+                gap: 40px;
+            }
+            
+            .profile-image-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .welcome-title {
+                font-size: 30px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 19px;
+            }
+            
+            .speech-bubble {
+                padding: 35px 25px;
             }
             
             /* Sponsors responsive */
@@ -1846,6 +1935,38 @@
                 padding: 0 15px;
             }
             
+            /* Welcome section mobile */
+            #welcome {
+                padding: 80px 15px;
+            }
+            
+            .welcome-container {
+                gap: 30px;
+            }
+            
+            .profile-image-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .welcome-title {
+                font-size: 28px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 18px;
+                line-height: 1.4;
+            }
+            
+            .speech-bubble {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+            
+            .welcome-message {
+                font-size: 16px;
+            }
+            
             .sponsor-logo.major {
                 min-width: 160px;
                 max-width: 180px;
@@ -1926,6 +2047,34 @@
             .conference-date {
                 font-size: 36px;
                 padding: 0 10px;
+            }
+            
+            /* Welcome section mobile */
+            #welcome {
+                padding: 60px 15px;
+            }
+            
+            .profile-image-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .welcome-title {
+                font-size: 26px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 17px;
+            }
+            
+            .speech-bubble {
+                padding: 25px 20px;
+                margin: 0 10px;
+            }
+            
+            .welcome-message {
+                font-size: 15px;
+                line-height: 1.6;
             }
             
             .floating-buttons a {
@@ -2099,6 +2248,28 @@
             
             .hero-date {
                 font-size: 20px;
+            }
+            
+            /* Welcome section small mobile */
+            .profile-image-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .welcome-title {
+                font-size: 24px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 16px;
+            }
+            
+            .speech-bubble {
+                padding: 20px 15px;
+            }
+            
+            .welcome-message {
+                font-size: 14px;
             }
             
             .countdown {
@@ -2301,33 +2472,46 @@
         <span class="calendar-hint">(Click the date above to add to your Google Calendar)</span>
     </div>
     
-    <!-- WELCOME -->
+    <!-- =========================================== -->
+    <!-- UPDATED WELCOME SECTION - APPLE-STYLE DESIGN -->
+    <!-- =========================================== -->
     <section id="welcome" class="section">
-        <div class="welcome-image" data-aos="fade-right" data-aos-duration="1000">
-            <img src="images/president.jpg" alt="President AHP Terengganu">
-        </div>
-        <div class="welcome-text" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <h2>Welcome Message</h2>
-            <h3>DR. HARIZA BINTI HUSSIN ,<br>
-    Deputy State Health Director (Medicine), Terengganu State Health Department</h3>
-<p>
-    It is my great pleasure to welcome you to the official website of the <b>2nd Terengganu Allied Health Professional Scientific Conference.</b> 
-</p>
-<p>
-    On behalf of the Allied Health Professionals of Terengganu, I extend a heartfelt welcome to all participants, researchers, clinicians, academicians, and stakeholders. This conference serves as an important platform for allied health professionals to showcase research findings, share clinical experiences, and exchange innovative ideas that contribute towards improving the quality, safety, and outcomes of healthcare services.
-</p>
-<p>
-    The <b>2nd Terengganu Allied Health Professional Scientific Conference</b> reflects our continued commitment to strengthening the role of allied health professionals as key drivers within the healthcare system. Through scientific discourse, collaborative learning, and professional engagement, this conference aims to foster evidence-based practice and interdisciplinary collaboration.
-</p>
-<p>
-    Guided by the theme, <b>"Empowering Allied Health Professionals: Leading Change for Better Health Outcomes,"</b> this conference brings together professionals from diverse disciplines to inspire innovation, enhance competencies, and promote sustainable improvements in healthcare delivery. It is our hope that the knowledge shared and connections forged during this conference will translate into meaningful impact at both organizational and community levels.
-</p>
-<p>
-    I encourage all participants to actively engage in the scientific sessions, discussions, and networking opportunities offered throughout this conference. Your participation is vital in shaping the future of allied health practice in Terengganu and beyond.
-</p>
-<p>
-    Thank you, and I wish you a rewarding and successful conference.
-</p>
+        <div class="welcome-container" data-aos="fade-up" data-aos-duration="1000">
+            <!-- Circular Profile Image -->
+            <div class="profile-image-container" data-aos="zoom-in" data-aos-delay="200">
+                <img src="images/president.jpg" alt="President AHP Terengganu" class="profile-image">
+            </div>
+            
+            <!-- Title and Subtitle -->
+            <div class="welcome-title" data-aos="fade-up" data-aos-delay="300">Welcome Message</div>
+            <div class="welcome-subtitle" data-aos="fade-up" data-aos-delay="400">
+                DR. HARIZA BINTI HUSSIN ,<br>
+                Deputy State Health Director (Medicine), Terengganu State Health Department
+            </div>
+            
+            <!-- Speech Bubble / Chat Box -->
+            <div class="speech-bubble" data-aos="fade-up" data-aos-delay="500">
+                <div class="welcome-message">
+                    <p>
+                        It is my great pleasure to welcome you to the official website of the <b>2nd Terengganu Allied Health Professional Scientific Conference.</b> 
+                    </p>
+                    <p>
+                        On behalf of the Allied Health Professionals of Terengganu, I extend a heartfelt welcome to all participants, researchers, clinicians, academicians, and stakeholders. This conference serves as an important platform for allied health professionals to showcase research findings, share clinical experiences, and exchange innovative ideas that contribute towards improving the quality, safety, and outcomes of healthcare services.
+                    </p>
+                    <p>
+                        The <b>2nd Terengganu Allied Health Professional Scientific Conference</b> reflects our continued commitment to strengthening the role of allied health professionals as key drivers within the healthcare system. Through scientific discourse, collaborative learning, and professional engagement, this conference aims to foster evidence-based practice and interdisciplinary collaboration.
+                    </p>
+                    <p>
+                        Guided by the theme, <b>"Empowering Allied Health Professionals: Leading Change for Better Health Outcomes,"</b> this conference brings together professionals from diverse disciplines to inspire innovation, enhance competencies, and promote sustainable improvements in healthcare delivery. It is our hope that the knowledge shared and connections forged during this conference will translate into meaningful impact at both organizational and community levels.
+                    </p>
+                    <p>
+                        I encourage all participants to actively engage in the scientific sessions, discussions, and networking opportunities offered throughout this conference. Your participation is vital in shaping the future of allied health practice in Terengganu and beyond.
+                    </p>
+                    <p>
+                        Thank you, and I wish you a rewarding and successful conference.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
     
